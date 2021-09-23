@@ -14,14 +14,15 @@
         titulo VARCHAR(50) NOT NULL,
         genero VARCHAR(50) NOT NULL,
         pais VARCHAR(50) NOT NULL,
-        año DATE NOT NULL,
-        distribuidora VARCHAR(50) NOT NULL
+        ayo DATE NOT NULL,
+        cartel VARCHAR(255) NOT NULL
     );
 
     CREATE TABLE personas (
         id_persona INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL,
-        apellidos VARCHAR(50) NOT NULL
+        apellidos VARCHAR(50) NOT NULL,
+        fotografia VARCHAR(255) NOT NULL,
     );
 
     CREATE TABLE actuan (
