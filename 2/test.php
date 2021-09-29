@@ -2,31 +2,14 @@
 error_reporting(0);
 ?>
 <?php
-$msg = "";
-
-// If upload button is clicked ...
-if (isset($_POST['upload'])) {
-
-	$filename = $_FILES["uploadfile"]["name"];
-	$tempname = $_FILES["uploadfile"]["tmp_name"];	
-		$folder = "image/".$filename;
-		
-	$db = mysqli_connect("localhost", "root", "", "videoclub");
-
-		// Get all the submitted data from the form
-		$sql = "INSERT INTO cartel (filename) VALUES ('$filename')";
-
-		// Execute query
-		mysqli_query($db, $sql);
-		
-		// Now let's move the uploaded image into the folder: image
-		if (move_uploaded_file($tempname, $folder)) {
-			$msg = "Image uploaded successfully";
-		}else{
-			$msg = "Failed to upload image";
-	}
+$target_path = "http://localhost:8081/2daw/pruebaclase/2/images/";
+$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    echo "El archivo ".  basename( $_FILES['uploadedfile']['name']). 
+    " ha sido subido";
+} else{
+    echo "Ha ocurrido un error, trate de nuevo!";
 }
-$result = mysqli_query($db, "SELECT cartel FROM peliculas");
 ?>
 
 
@@ -40,14 +23,9 @@ $result = mysqli_query($db, "SELECT cartel FROM peliculas");
 <body>
     <div id="content">
 
-        <form method="POST" action="" enctype="multipart/form-data">
-            <input type="file" name="uploadfile" value="" />
-
-            <div>
-                <button type="submit" name="upload">
-                    UPLOAD
-                </button>
-            </div>
+        <form enctype="multipart/form-data" action="uploader.php" method="POST">
+            <input name="uploadedfile" type="file" />
+            <input type="submit" value="Subir archivo" />
         </form>
     </div>
 </body>

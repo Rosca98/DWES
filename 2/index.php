@@ -125,7 +125,7 @@ switch ($action)
                 // La consulta ha devuelto registros: vamos a mostrarlos
                 // Primero, el formulario de búsqueda
                 echo "<form action='index.php'>
-                                <input type='hidden' name='action' value='buscarpelicula'>
+                                <input type='hidden' name='action' value='buscarPelicula'>
                                 <input type='text' name='textoBusqueda'>
                                 <input type='submit' value='Buscar'>
                         </form><br>";
@@ -164,12 +164,12 @@ switch ($action)
         echo "<h1>Modificación de pelicula</h1>";
 
         // Creamos el formulario con los campos de la Pelicula
-        echo "<form action = 'index.php' method = 'get'>
+        echo "<form action = 'index.php' enctype='multipart/form-data' method ='post'>
                         Título:<input type='text' name='titulo'><br>
                         Género:<input type='text' name='genero'><br>
                         País:<input type='text' name='pais'><br>
                         Año:<input type='text' name='anyo'><br>
-                        Cartel:<input type='text' name='cartel'><br>";
+                        Cartel:<input type='file' required name='cartel'><br>";
 
         echo "</select>";
 
@@ -192,8 +192,15 @@ switch ($action)
         $genero = $_REQUEST["genero"];
         $pais = $_REQUEST["pais"];
         $anyo = $_REQUEST["anyo"];
-        $cartel = $_REQUEST["cartel"];
 
+
+        $target_path = "C:/xampp/htdocs/2daw/pruebaclase/2/images/";
+        $target_path = $target_path . basename($_FILES['cartel']['name']); 
+        if(move_uploaded_file($_FILES['cartel']['tmp_name'], $target_path)) {
+         $cartel = "http://localhost:8081/2daw/pruebaclase/2/images/".basename( $_FILES['cartel']['name']);
+        }else{
+            echo "Error";
+        }
         // Lanzamos el INSERT contra la BD.
         echo "INSERT INTO peliculas (titulo,genero,pais,anyo,cartel) VALUES ('$titulo','$genero', '$pais', '$anyo', '$cartel')";
         $db->query("INSERT INTO peliculas (titulo,genero,pais,anyo,cartel) VALUES ('$titulo','$genero', '$pais', '$anyo', '$cartel')");
@@ -224,13 +231,13 @@ switch ($action)
 
         // Creamos el formulario con los campos de la pelicula
         // y lo rellenamos con los datos que hemos recuperado de la BD
-        echo "<form action = 'index.php' method = 'get'>
+        echo "<form action = 'index.php' enctype='multipart/form-data' method ='post'>
                         <input type='hidden' name='id_pelicula' value='$id_pelicula'>
                         Título:<input type='text' name='titulo' value='$pelicula->titulo'><br>
                         Género:<input type='text' name='genero' value='$pelicula->genero'><br>
                         País:<input type='text' name='pais' value='$pelicula->pais'><br>
                         Año:<input type='text' name='anyo' value='$pelicula->anyo'><br>
-                        Cartel:<input type='text' name='cartel' value='$pelicula->cartel'><br>";
+                        Cartel:<input type='file' name='cartel' value='$pelicula->cartel'><br>";
 
         // Finalizamos el formulario
         echo "  <input type='hidden' name='action' value='modificarPelicula'>
@@ -252,7 +259,15 @@ switch ($action)
         $genero = $_REQUEST["genero"];
         $pais = $_REQUEST["pais"];
         $anyo = $_REQUEST["anyo"];
-        $cartel = $_REQUEST["cartel"];
+
+        $target_path = "C:/xampp/htdocs/2daw/pruebaclase/2/images/";
+            $target_path = $target_path . basename($_FILES['cartel']['name']); 
+            if(move_uploaded_file($_FILES['cartel']['tmp_name'], $target_path)) {
+                $cartel = "http://localhost:8081/2daw/pruebaclase/2/images/".basename( $_FILES['cartel']['name']);
+            }else{
+                echo "Error";
+            
+            }
 
         // Lanzamos el UPDATE contra la base de datos.
         $db->query("UPDATE peliculas SET
@@ -390,7 +405,7 @@ switch ($action)
                 // La consulta ha devuelto registros: vamos a mostrarlos
                 // Primero, el formulario de búsqueda
                 echo "<form action='index.php'>
-                                <input type='hidden' name='action' value='buscarpersona'>
+                                <input type='hidden' name='action' value='buscarPersona'>
                                 <input type='text' name='textoBusqueda'>
                                 <input type='submit' value='Buscar'>
                         </form><br>";
@@ -428,10 +443,10 @@ switch ($action)
             echo "<h1>Modificación de persona</h1>";
     
             // Creamos el formulario con los campos de persona
-            echo "<form action = 'index.php' method = 'get'>
+            echo "<form action = 'index.php' enctype='multipart/form-data' method ='post'>
                             Nombre:<input type='text' name='nombre'><br>
                             Apellidos:<input type='text' name='apellidos'><br>
-                            Fotografia:<input type='text' name='fotografia'><br>";
+                            Fotografia:<input type='file' required name='fotografia'><br>";
     
             echo "</select>";
     
@@ -452,8 +467,15 @@ switch ($action)
             // Primero, recuperamos todos los datos del formulario
             $nombre = $_REQUEST["nombre"];
             $apellidos = $_REQUEST["apellidos"];
-            $fotografia = $_REQUEST["fotografia"];
     
+            $target_path = "C:/xampp/htdocs/2daw/pruebaclase/2/images/";
+            $target_path = $target_path . basename($_FILES['fotografia']['name']); 
+            if(move_uploaded_file($_FILES['fotografia']['tmp_name'], $target_path)) {
+                $fotografia = "http://localhost:8081/2daw/pruebaclase/2/images/".basename( $_FILES['fotografia']['name']);
+            }else{
+                echo "Error";
+            
+            }
             // Lanzamos el INSERT contra la BD.
             echo "INSERT INTO personas (nombre,apellido,fotografia) VALUES ('$nombre','$apellidos', '$fotografia')";
             $db->query("INSERT INTO personas (nombre,apellidos,fotografia) VALUES ('$nombre','$apellidos','$fotografia')");
@@ -484,11 +506,11 @@ switch ($action)
     
             // Creamos el formulario con los campos de la persona
             // y lo rellenamos con los datos que hemos recuperado de la BD
-            echo "<form action = 'index.php' method = 'get'>
+            echo "<form action = 'index.php' enctype='multipart/form-data' method ='post'>
                             <input type='hidden' name='id_persona' value='$id_persona'>
                             Nombre:<input type='text' name='nombre' value='$persona->nombre'><br>
                             Apellidos:<input type='text' name='apellidos' value='$persona->apellidos'><br>
-                            Fotografia:<input type='text' name='fotografia' value='$persona->fotografia'><br>";
+                            Fotografia:<input type='file' name='fotografia' value='$persona->fotografia'><br>";
     
             // Finalizamos el formulario
             echo "  <input type='hidden' name='action' value='modificarPersona'>
@@ -508,8 +530,15 @@ switch ($action)
             $id_persona = $_REQUEST["id_persona"];
             $nombre = $_REQUEST["nombre"];
             $apellidos = $_REQUEST["apellidos"];
-            $fotografia = $_REQUEST["fotografia"];
-    
+
+            $target_path = "C:/xampp/htdocs/2daw/pruebaclase/2/images/";
+            $target_path = $target_path . basename($_FILES['fotografia']['name']); 
+            if(move_uploaded_file($_FILES['fotografia']['tmp_name'], $target_path)) {
+                $fotografia = "http://localhost:8081/2daw/pruebaclase/2/images/".basename( $_FILES['fotografia']['name']);
+            }else{
+                echo "Error";
+            
+            }
             // Lanzamos el UPDATE contra la base de datos.
             $db->query("UPDATE personas SET
                                     nombre = '$nombre',
