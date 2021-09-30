@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2021 a las 18:39:22
+-- Tiempo de generación: 30-09-2021 a las 19:12:49
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.4.19
 
@@ -32,15 +32,27 @@ CREATE TABLE `actuan` (
   `id_persona` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `actuan`
+-- Estructura de tabla para la tabla `dirigen`
 --
 
-INSERT INTO `actuan` (`id_pelicula`, `id_persona`) VALUES
-(5, 1),
-(5, 1),
-(2, 1),
-(2, 1);
+CREATE TABLE `dirigen` (
+  `id_pelicula` int(10) UNSIGNED NOT NULL,
+  `id_persona` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `escriben`
+--
+
+CREATE TABLE `escriben` (
+  `id_pelicula` int(10) UNSIGNED NOT NULL,
+  `id_persona` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -54,17 +66,9 @@ CREATE TABLE `peliculas` (
   `genero` varchar(50) NOT NULL,
   `pais` varchar(50) NOT NULL,
   `anyo` date NOT NULL,
-  `cartel` varchar(255) NOT NULL
+  `cartel` varchar(255) NOT NULL,
+  `trailer` varchar(2555) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `peliculas`
---
-
-INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `genero`, `pais`, `anyo`, `cartel`) VALUES
-(1, '', '', '', '0000-00-00', ''),
-(2, 'Harry Potter y La Piedra Filosofal', 'Literatura Fantastica', 'Reino Unido', '1997-06-26', 'F:/xamp/htdocs/2daw/2/images/h1'),
-(5, 'Harry Potter y la Camara de Los Secretos', 'Literatura Fantastica', 'Reino Unido', '2002-11-29', 'F:/xamp/htdocs/2daw/2/images');
 
 -- --------------------------------------------------------
 
@@ -79,12 +83,16 @@ CREATE TABLE `personas` (
   `fotografia` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `personas`
+-- Estructura de tabla para la tabla `producen`
 --
 
-INSERT INTO `personas` (`id_persona`, `nombre`, `apellidos`, `fotografia`) VALUES
-(1, 'Cristian', 'Rosca', 'F:/xamp/htdocs/2daw/2/images/h1.jpg');
+CREATE TABLE `producen` (
+  `id_pelicula` int(10) UNSIGNED NOT NULL,
+  `id_persona` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -94,6 +102,20 @@ INSERT INTO `personas` (`id_persona`, `nombre`, `apellidos`, `fotografia`) VALUE
 -- Indices de la tabla `actuan`
 --
 ALTER TABLE `actuan`
+  ADD KEY `id_pelicula` (`id_pelicula`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
+-- Indices de la tabla `dirigen`
+--
+ALTER TABLE `dirigen`
+  ADD KEY `id_pelicula` (`id_pelicula`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
+-- Indices de la tabla `escriben`
+--
+ALTER TABLE `escriben`
   ADD KEY `id_pelicula` (`id_pelicula`),
   ADD KEY `id_persona` (`id_persona`);
 
@@ -110,6 +132,13 @@ ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_persona`);
 
 --
+-- Indices de la tabla `producen`
+--
+ALTER TABLE `producen`
+  ADD KEY `id_pelicula` (`id_pelicula`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -117,13 +146,13 @@ ALTER TABLE `personas`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pelicula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -135,6 +164,27 @@ ALTER TABLE `personas`
 ALTER TABLE `actuan`
   ADD CONSTRAINT `actuan_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
   ADD CONSTRAINT `actuan_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
+
+--
+-- Filtros para la tabla `dirigen`
+--
+ALTER TABLE `dirigen`
+  ADD CONSTRAINT `dirigen_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
+  ADD CONSTRAINT `dirigen_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
+
+--
+-- Filtros para la tabla `escriben`
+--
+ALTER TABLE `escriben`
+  ADD CONSTRAINT `escriben_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
+  ADD CONSTRAINT `escriben_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
+
+--
+-- Filtros para la tabla `producen`
+--
+ALTER TABLE `producen`
+  ADD CONSTRAINT `producen_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
+  ADD CONSTRAINT `producen_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

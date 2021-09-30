@@ -75,6 +75,9 @@
             // --------------------------------- BORRAR PELICULAS ----------------------------------------
 
         case "borrarPelicula":
+            echo "<script>
+                alert('Seguro que quieres borrar la pelicula');
+            </script>";
             echo "<h1>Borrar peliculas</h1>";
 
             // Recuperamos el id de pelicula y lanzamos el DELETE contra la BD
@@ -88,7 +91,6 @@
                 echo "Pelicula borrado con éxito";
             }
             echo "<p><a href='index.php'>Volver</a></p>";
-
             break;
 
             // --------------------------------- BUSCAR PELICULAS ----------------------------------------
@@ -176,7 +178,6 @@
             $pais = $_REQUEST["pais"];
             $anyo = $_REQUEST["anyo"];
             $trailer = $_REQUEST["trailer"];
-
 
             $target_path = "C:/xampp/htdocs/2daw/pruebaclase/2/images/";
             $target_path = $target_path . basename($_FILES['cartel']['name']);
@@ -276,9 +277,8 @@
     }
         
     ?>
-    </div>
-    <div class="item2">
-        <?php
+
+    <?php
         // --------------------------------- PERSONAS ----------------------------------------
         $db = new mysqli("localhost", "root", "", "videoclub");
 
@@ -385,7 +385,7 @@
                         echo "<td>" . $fila->apellidos . "</td>";
                         echo "<td><img src='$fila->fotografia' width='100px' height='150px'></td>";
                         echo "<td><a href='index.php?action=formularioModificarPersona&id_persona=" . $fila->id_persona . "'>Modificar</a></td>";
-                        echo "<td><a href='index.php?action=borrarPersona&id_persona=" . $fila->id_persona . "'>Borrar</a></td>";
+                        echo "<td><a  href='index.php?action=borrarPersona&id_persona=" . $fila->id_persona . "'>Borrar</a></td>";
                         echo "</tr>";
                     }
                     echo "</table>";
@@ -514,9 +514,130 @@
             echo "<p><a href='index.php'>Volver</a></p>";
             break;
     }
-
-
     ?>
+
+    <?php
+        // --------------------------------- ACTUAN ----------------------------------------
+        $db = new mysqli("localhost", "root", "", "videoclub");
+
+        // Miramos el valor de la variable "action", si existe. Si no, le asignamos una acción por defecto
+        if (isset($_REQUEST["action"])) {
+            $action = $_REQUEST["action"];
+        } else {
+            $action = "mostrarListaActuan"; // Acción por defecto
+
+        }
+
+        // CONTROL DE FLUJO PRINCIPAL
+        // El programa saltará a la sección del switch indicada por la variable "action"
+    switch ($action) {
+
+        case "mostrarListaActuan":
+            echo "<h1>PERSONAS ACTUAN EN PELICULA</h1>";
+
+            // Buscamos todos las Personas del Videoclub
+            if ($result = $db->query("SELECT * FROM actuan 
+                                            ORDER BY actuan.id_persona")) {
+
+                // La consulta se ha ejecutado con éxito. Vamos a ver si contiene registros
+                if ($result->num_rows != 0) {
+                    // La consulta ha devuelto registros: vamos a mostrarlos
+
+                    // Ahora, la tabla con los datos de los Personas
+                    echo "<table border='1'>
+                        <tr><th>id_persona</th><th>id_pelicula</th></tr>";
+                    while ($fila = $result->fetch_object()) {
+                        echo "<tr>";
+                        echo "<td>" . $fila->id_persona . "</td>";
+                        echo "<td>" . $fila->id_pelicula . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    // La consulta no contiene registros
+                    echo "No se encontraron datos";
+                }
+            } else {
+                // La consulta ha fallado
+                echo "Error al tratar de recuperar los datos de la base de datos. Por favor, inténtelo más tarde";
+            }
+
+            echo "<p><a href='index.php?action=formularioInsertarActuan'>Nuevo</a></p>";
+            break;
+         
+            // --------------------------------- FORMULARIO ALTA DE ACTUACION EN PELICULA ----------------------------------------
+
+        case "formularioInsertarActuan":
+            echo "<h1>Persona actua en pelicula</h1>";
+            // Buscamos todos las Personas del Videoclub
+            if ($result = $db->query("SELECT * FROM actuan 
+                                            ORDER BY actuan.id_persona")) {
+
+                // La consulta se ha ejecutado con éxito. Vamos a ver si contiene registros
+                if ($result->num_rows != 0) {
+                    // La consulta ha devuelto registros: vamos a mostrarlos
+
+                    // Ahora, la tabla con los datos de los Personas
+                    echo "<table border='1'>
+                        <tr><th>id_persona</th><th>id_pelicula</th></tr>";
+                    while ($fila = $result->fetch_object()) {
+                        echo "<tr>";
+                        echo "<td>" . $fila->id_persona . "</td>";
+                        echo "<td>" . $fila->id_pelicula . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    // La consulta no contiene registros
+                    echo "No se encontraron datos";
+                }
+            } else {
+                // La consulta ha fallado
+                echo "Error al tratar de recuperar los datos de la base de datos. Por favor, inténtelo más tarde";
+            }
+
+            // Creamos el formulario con los campos de actuacion de persona en pelicula
+            echo "<form action = 'index.php' enctype='multipart/form-data' method ='post'>
+                            ID_PERSONA:<input type='number' name='id_persona'><br>
+                            ID_PELICULA:<input type='number' name='id_pelicula'><br>";
+
+            echo "</select>";
+
+            // Finalizamos el formulario
+            echo "  <input type='hidden' name='action' value='insertarActuan'>
+                            <input type='submit'>
+                        </form>";
+            echo "<p><a href='index.php'>Volver</a></p>";
+
+            break;
+
+            // --------------------------------- INSERTAR ALTA DE ACTUACION EN PELICULA ----------------------------------------
+
+            case "insertarActuan":
+                echo "<h1>Alta de persona</h1>";
+    
+                // Vamos a procesar el formulario de alta de actuacion de persona en pelicula
+                // Primero, recuperamos todos los datos del formulario
+                $id_pelicula = $_REQUEST["id_pelicula"];
+                $id_persona = $_REQUEST["id_persona"];
+    
+                // Lanzamos el INSERT contra la BD.
+                echo "INSERT INTO actuan (id_pelicula,id_persona) VALUES ('$id_pelicula','$id_persona')";
+                $db->query("INSERT INTO actuan (id_pelicula,id_persona) VALUES ('$id_pelicula','$id_persona')");
+                if ($db->affected_rows == 1) {
+                    // Si la inserción del la persona ha funcionado
+                    // Tenemos que averiguar qué id_persona se ha asignado al persona que acabamos de insertar
+                    echo "<br>Actuacion en pelicula insertada con éxito";
+                } else {
+                    // Si la inserción de la persona ha fallado, mostramos mensaje de error
+                    echo "Ha ocurrido un error al insertar la actuacion. Por favor, inténtelo más tarde.";
+                }
+                echo "<p><a href='index.php'>Volver</a></p>";
+    
+                break;
+
+        }
+        ?>
 
 </body>
 
