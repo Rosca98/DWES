@@ -22,7 +22,7 @@ class User
      */
     public function checkLogin($email, $pass)
     {
-       if ($result = DB::dataQuery("SELECT id FROM users WHERE email = '$email' AND password = '$pass'")) {
+       if ($result = DB::dataQuery("SELECT idUser FROM users WHERE username = '$email' AND password = '$pass';")) {
             if ($result->num_rows == 1) {
                 $usuario = $result->fetch_object();
                 return $usuario;
