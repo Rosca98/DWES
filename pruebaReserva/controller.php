@@ -45,9 +45,10 @@ class Controller
             $email = Security::filter($_REQUEST['email']);
             $pass = Security::filter($_REQUEST['pass']);
             $userData = $this->user->checkLogin($email, $pass);
+
             if ($userData!=null) {
                 // Login correcto: creamos la sesión y pedimos al usuario que elija su rol
-                Security::createSession($userData->id);
+                Security::createSession($userData['id']);
                 $this->SelectUserRolForm();
             }
             else {
@@ -74,19 +75,19 @@ class Controller
      */
     public function processSelectUserRolForm()
     {
-        Security::changeRol(Security::filter($_REQUEST['type']));
+        Security::changeRol(Security::filter($_REQUEST['idRol']));
         $this->showMainMenu();
     }
 
     /**
      * Muestra el menú de opciones del usuario según la tabla de persmisos
-     
+     */
     public function showMainMenu()
     {
         $data['permissions'] = $this->user->getUserPermissions(Security::getRolId());
         $this->view->show("mainMenu", $data);
     }
-    */
+
     /**
      * Cierra la sesión
      */    

@@ -1,6 +1,6 @@
 <?php
 
-include_once("db.php");
+include("db.php");
 
 class User
 {
@@ -11,22 +11,23 @@ class User
      */
     public function __construct()
     {
-        DB::createConnection();
+       DB::createConnection(); 
     }
 
     /**
      * Comprueba si un email y una password pertenecen a algún usuario de la base  de datos.
      * @param String $email El email del usuario que se quiere comprobar
      * @param String $pass La contraseña del usuario que se quiere comprobar
-     * @return User $usuario Si el usuario existe, devuelve un objeto con todos los campos del usuario en su interior. Si no, devuelve un objeto null
+     * @return User $usuario Si el usuario existe, devuelve un array con todos los campos del usuario en su interior. Si no, devuelve un objeto null
      */
     public function checkLogin($email, $pass)
     {
        $result = DB::dataQuery("SELECT * FROM users WHERE username = '$email' AND password = '$pass'");
-       if (count($result, $mode = COUNT_NORMAL) > 0)
+       if (count($result) > 0){
             return $result[0];
-        else
+       }else{
             return null;
+       }
     }
 
     /**
@@ -37,8 +38,9 @@ class User
     public function getUserRoles($idUser)
     {
         $resultArray = array();
-        $result = DB::dataQuery("SELECT type FROM users
-                                            WHERE idUser = '$idUser'");
+        $result = DB::dataQuery("SELECT roles.* FROM roles
+                                            INNER JOIN `roles-users` ON roles.id = `roles-users`.idRol
+                                            WHERE `roles-users`.idUser = '$idUser'");
         if (count($result) > 0)
               return $result;
         else
@@ -52,9 +54,15 @@ class User
      */
     public function getUserPermissions($idRol)
     {
-        $result = DB::dataQuery("SELECT type FROM users 
-                                            WHERE type = '$idRol'");
-        return $result;
+        $resultArray = array();
+        $result = DB::dataQuery("SELECT permissions.* FROM permissions 
+                                            INNER JOIN `permissions-roles` ON permissions.id = `permissions-roles`.idPermission 
+                                            WHERE `permissions-roles`.idRol = '$idRol'");
+        if (count($result) > 0)
+            return $result;
+        else
+            return null;
+
     }
 }
 ?>
