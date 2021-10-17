@@ -1,6 +1,5 @@
-<?php
-
-class Config {
+<?php 
+class Config{
     public static $servidor = "localhost";
     public static $usuario = "root";
     public static $clave = "";

@@ -1,15 +1,16 @@
 <?php
 include("controller.php");
-$controller = new Controller();
-
-// Miramos a ver si hay alguna acci�n pendiente de realizar
+// Miramos a ver si hay alguna accion pendiente de realizar
 if (!isset($_REQUEST['action'])) {
-// No la hay. Usamos la acci�n por defecto (mostrar el formulario de login)
-    $action = "showLoginForm";
+// No la hay. Usamos la accion por defecto (mostrar el formulario de login)
+    $action = "showResourcesList";
 } else {
-// S� la hay. La recuperamos.
+// Si la hay. La recuperamos.
     $action = $_REQUEST['action'];
 }
 
-// Ejecutamos el m�todo del controlador que se llame como la acci�n
+//Creamos el controlador
+$controller = new Controller();
+
+// Ejecutamos el metodo del controlador que se llame como la accion
 $controller->$action();

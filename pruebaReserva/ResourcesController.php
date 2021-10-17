@@ -1,22 +1,30 @@
 <?php
 
 include ("view.php");
-include ("models/user.php");
-include ("models/security.php");
+include ("Models/Resources.php");
+//include ("models/security.php");
 
-class Controller
+class ResourcesController
 {
 
-    private $view, $user;
+
+    public function index(){
+        View::show("Index");
+    }
+    public function list(){
+        $data['list'] = Resources::resourceslist();
+        View::show("ResourcesList", $data);
+    }
+    private $view, $Resources;
 
     /**
      * Constructor. Crea el objeto vista y los modelos
      */
     public function __construct()
     {
-        session_start(); // Si no se ha hecho en el index, claro
+        //session_start(); // Si no se ha hecho en el index, claro
         $this->view = new View(); // Vistas
-        $this->user = new User(); // Modelo de usuarios
+        $this->Resources = new Resources(); // Modelo de usuarios
     }
 
     /**
@@ -45,38 +53,16 @@ class Controller
             $email = Security::filter($_REQUEST['email']);
             $pass = Security::filter($_REQUEST['pass']);
             $userData = $this->user->checkLogin($email, $pass);
-
             if ($userData!=null) {
                 // Login correcto: creamos la sesión y pedimos al usuario que elija su rol
-                Security::createSession($userData['id']);
-                $this->SelectUserRolForm();
+                Security::createSession($userData->id);
+                
             }
             else {
                 $data['errorMsg'] = "Usuario o contraseña incorrectos";
                 $this->view->show("loginForm", $data);
             }
         }
-    }
-
-    /**
-     * Muestra formulario de selección de rol de usuario
-     */
-    public function selectUserRolForm()
-    {
-        $data['roles'] = $this->user->getUserRoles(Security::getUserId());
-        $this->view->show("selectUserRolForm", $data);
-        // Posible mejora: si el usuario solo tiene un rol, la aplicación podría seleccionarlo automáticamnte
-        // y saltar a $this->showMainMenu()
-    }
-
-    /**
-     * Procesa el formulario de selección de rol de usuario y crea una variable de sesión para almacenarlo.
-     * Redirige al menú principal.
-     */
-    public function processSelectUserRolForm()
-    {
-        Security::changeRol(Security::filter($_REQUEST['idRol']));
-        $this->showMainMenu();
     }
 
     /**
@@ -96,17 +82,6 @@ class Controller
         $this->view->show("loginForm");
     }
 
-    /**
-     * Elimina un usuario de la base de datos
-     */    
-    public function deleteUser() {
-        if (Security::thereIsSession()) {
-            echo "Este método se supone que borra un usuario, pero está sin implementar<br>";
-            echo "Solo lo utilizamos para comprobar que el control de acceso de usuarios funciona bien";
-        } else {
-            Security::closeSession();
-            $data['errorMsg'] = 'No tienes permisos para hacer eso';
-            $this->view->show("loginForm", $data);
-        }
-    }
+    
+    
 }

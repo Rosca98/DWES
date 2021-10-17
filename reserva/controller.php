@@ -1,8 +1,10 @@
 <?php
 
-include ("view.php");
-include ("models/user.php");
-include ("models/security.php");
+    include ("view.php");               // Vista
+    include ("models/conexion.php");    // Modelo de Conexion
+    include ("models/resources.php");   // Modelo de Recursos
+    //include ("models/timeSlots.php");   // Modelo de Horario
+    //include ("models/users.php");       // Modelo de Usuarios
 
 class Controller
 {
@@ -14,9 +16,12 @@ class Controller
      */
     public function __construct()
     {
-        session_start(); // Si no se ha hecho en el index, claro
-        $this->view = new View(); // Vistas
-        $this->user = new User(); // Modelo de usuarios
+        session_start();                    // No se ha hecho en el index
+        $this->view = new View();           // Vistas
+        $this->db = new conexion();         // Crear conexion
+        //$this->timeslot = new TimeSlot();   // Modelo de Horario
+        $this->resource = new Resource();   // Modelo de Recursos
+        //$this->user = new User();           // Modelo de Usuarios
     }
 
     /**
@@ -25,6 +30,76 @@ class Controller
     public function showLoginForm()
     {
         $this->view->show("loginForm");
+    }
+
+    /**
+     * Muestra lista de Recursos
+     */
+    public function showResourcesList(){
+        $this->view->show("showAllResources");
+    }
+
+    /**
+     * Muestra el formulario para añadir recursos
+     */
+    public function showAddResource(){
+        $this->view->show("showAddResources");
+    }
+
+    /**
+     * Muestra el formulario para modificar recursos
+     */
+    public function showModResource(){
+        $this->view->show("showModResources");
+    }
+
+    /**
+     * Procesamos la informacion para añadir el nuevo recurso
+     */
+    public function processAddResource(){
+        $name = $_REQUEST['resource_name'];
+        $desc = $_REQUEST['resource_desc'];
+        $location = $_REQUEST['resource_location'];
+    
+        $img = $_FILES['img_upload']['name'];
+        move_uploaded_file($img, 'assets/img/resources/');
+        $img_ruta = 'assets/img/resources/' . $name;
+                
+        $this->resource->addResource($name,$desc,$location,$img_ruta);
+        header('Location: index.php?action=showResourcesList');
+    }
+
+    /**
+     * Eliminar el recurso
+     */
+    public function eliminarResource(){
+        $id = $_REQUEST['id_resource'];
+        $this->resource->deleteResource($id);
+        //Volver a la lista de Resources
+        header('Location: index.php?action=showResourcesList');
+    }
+
+    /**
+     * Modificar el recurso
+     */
+    public function ProcessModifyResource(){     
+        $id = $_REQUEST["resource_id"];
+        $name = $_REQUEST["resource_name"];
+        $desc = $_REQUEST["resource_desc"];
+        $location = $_REQUEST["resource_location"];
+    
+        //¿Hay imagen subida?
+        if (isset($_FILES["img_upload"])) {
+        //Si la hay se mueve a carpeta y se establece como imagen
+            $img_upload = $_FILES["img_upload"];
+            move_uploaded_file($img_upload, 'assets/img/resources/');
+            $img = 'assets/img/resources/' . $name;
+        } else{
+        // Si no la hay, será el enlace
+            $img = $_REQUEST["img_link"];
+        }
+        $this->resource->ModifyResource($id,$name,$desc,$location,$img);
+        header('Location: index.php');
     }
 
     /**

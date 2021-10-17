@@ -1,7 +1,5 @@
 <?php
-
-include_once("config.php");
-
+include("config.php");
 /**
  * Capa de abstracción de datos.
  * Accede a MySql o MariaDB, haciendo que el resto de la aplicación
@@ -13,10 +11,11 @@ class DB {
 
     /**
      * Crea la conexión con la base de datos
+
      * @return boolean true si la conexión se realiza con normalidad y false en caso de error
      */
     public static function createConnection() {
-        DB::$connection = new mysqli(Config::$dbhost, Config::$dbuser, Config::$dbpass, Config::$dbname);
+        DB::$connection = new mysqli(Config::$servidor, Config::$usuario, Config::$clave, Config::$dbname);
         if (DB::$connection->connect_errno) return false;
         else return true;
     }
@@ -25,7 +24,7 @@ class DB {
      * Cierra la conexión con la base de datos
      */
     public static function closeConnection() {
-        if (DB::$connection) DB::$connection->close();
+    if (DB::$connection) DB::$connection->close();
     }
 
     /**
@@ -36,9 +35,11 @@ class DB {
      */
     public static function dataQuery($sql) {
         $res = DB::$connection->query($sql);
-        $resArray = array();       
+        $resArray = array();
         if ($res->num_rows > 0) {
-            $resArray[] = $res;
+            while ($row = $res->fetch_array()) {
+                $resArray[] = $row;
+            }
         } else {
             $resArray = null;
         }
