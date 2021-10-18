@@ -1,4 +1,3 @@
-# pruebaclase
-Primera Prueba
+# DWES
 
-Ejercicios de clase
+Ejercicios de Desarrollo web en entorno servidor
