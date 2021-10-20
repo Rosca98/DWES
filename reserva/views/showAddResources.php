@@ -17,7 +17,7 @@ echo "<form action='index.php?action=processAddResource' method='post' enctype='
 
     echo "<div class='d-flex mt-2 align-items-center justify-content-center flex-wrap flex-row'>";
         echo "<label for='resource_img'>Imagen del recurso:</label>";
-        echo "<input type='file' class='mx-auto custom-file-input' name='img_upload' id='img_upload'>";
+        echo "<input type='file' name='img_upload' required id='img_upload'>";
     echo "</div>";
 
     echo "<div class='mt-2 d-flex align-items-center justify-content-center flex-wrap flex-column'>";

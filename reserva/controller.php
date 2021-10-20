@@ -3,8 +3,7 @@
     include ("view.php");               // Vista
     include ("models/conexion.php");    // Modelo de Conexion
     include ("models/resources.php");   // Modelo de Recursos
-    //include ("models/timeSlots.php");   // Modelo de Horario
-    //include ("models/users.php");       // Modelo de Usuarios
+
 
 class Controller
 {
@@ -16,12 +15,9 @@ class Controller
      */
     public function __construct()
     {
-        session_start();                    // No se ha hecho en el index
         $this->view = new View();           // Vistas
         $this->db = new conexion();         // Crear conexion
-        //$this->timeslot = new TimeSlot();   // Modelo de Horario
         $this->resource = new Resource();   // Modelo de Recursos
-        //$this->user = new User();           // Modelo de Usuarios
     }
 
     /**
@@ -60,11 +56,14 @@ class Controller
         $name = $_REQUEST['resource_name'];
         $desc = $_REQUEST['resource_desc'];
         $location = $_REQUEST['resource_location'];
-    
-        $img = $_FILES['img_upload']['name'];
-        move_uploaded_file($img, 'assets/img/resources/');
-        $img_ruta = 'assets/img/resources/' . $name;
-                
+
+        $target_path = 'C:/xampp/htdocs/2daw/pruebaclase/reserva/assets/img/';
+        $target_path = $target_path . basename($_FILES['img_upload']['name']);
+        if (move_uploaded_file($_FILES['img_upload']['tmp_name'], $target_path)) {
+            $img_ruta = "http://localhost:8081/2daw/pruebaclase/2/images/" . basename($_FILES['img_upload']['name']);
+        } else {
+            echo "Error";
+        }                
         $this->resource->addResource($name,$desc,$location,$img_ruta);
         header('Location: index.php?action=showResourcesList');
     }
@@ -87,18 +86,23 @@ class Controller
         $name = $_REQUEST["resource_name"];
         $desc = $_REQUEST["resource_desc"];
         $location = $_REQUEST["resource_location"];
-    
+        
+
         //¿Hay imagen subida?
         if (isset($_FILES["img_upload"])) {
         //Si la hay se mueve a carpeta y se establece como imagen
-            $img_upload = $_FILES["img_upload"];
-            move_uploaded_file($img_upload, 'assets/img/resources/');
-            $img = 'assets/img/resources/' . $name;
+        $target_path = 'C:/xampp/htdocs/2daw/pruebaclase/reserva/assets/img/';
+        $target_path = $target_path . basename($_FILES['img_upload']['name']);
+        if (move_uploaded_file($_FILES['img_upload']['tmp_name'], $target_path)) {
+            $img_ruta = "http://localhost:8081/2daw/pruebaclase/2/images/" . basename($_FILES['img_upload']['name']);
+        } else {
+            echo "Error";
+        }
         } else{
         // Si no la hay, será el enlace
-            $img = $_REQUEST["img_link"];
+            $img_ruta = $_REQUEST["img_link"];
         }
-        $this->resource->ModifyResource($id,$name,$desc,$location,$img);
+        $this->resource->ModifyResource($id,$name,$desc,$location,$img_ruta);
         header('Location: index.php');
     }
 
