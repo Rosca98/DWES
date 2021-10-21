@@ -1,5 +1,5 @@
 <?php
-
+    
     include ("view.php");               // Vista
     include ("models/conexion.php");    // Modelo de Conexion
     include ("models/resources.php");   // Modelo de Recursos
@@ -187,4 +187,5 @@ class Controller
             $this->view->show("loginForm", $data);
         }
     }
+    
 }
