@@ -4,14 +4,14 @@ include_once ("./models/resources.php");
 echo "
     <h1 class='text-center'>Lista de Recursos</h1>
     <div class='container-sm pt-5'>
-    <table class='table table-striped table-sm'>
+    <table class='table table-striped'>
         <thead>
             <tr>
-                <th>Recurso</th>
-                <th>Descripcion</th>
-                <th>Ubicación</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
+                <th class='text-center' scope='col'>Recurso</th>
+                <th class='text-center' scope='col'>Descripcion</th>
+                <th class='text-center' scope='col'>Ubicación</th>
+                <th class='text-center' scope='col'>Imagen</th>
+                <th class='text-center' scope='col'>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,21 +27,25 @@ echo "
         $image = $result['image'];
     
         echo "<tr>";
-            echo "<td scope='row'>$name</td>";
-            echo "<td>$description</td>";
-            echo "<td>$location</td>";
-            echo "<td><img src='$image' class='img-thumbnail' heigh='100px' width='100px'></td>";
+            echo "<td class='text-center' scope='row'>$name</td>";
+            echo "<td class='text-center'>$description</td>";
+            echo "<td class='text-center'>$location</td>";
+            echo "<td class='text-center'><img src='$image' class='img-thumbnail' heigh='100px' width='100px'></td>";
             echo "<td>";
-            echo "<div class='input-group'>";
+            echo "<div class='d-flex flex-row justify-content-around'>";
+            echo "<div class='d-flex'>";
                 echo "<form method='post' action='index.php?action=showModResource'>";
                     echo "<input type='hidden' id='id_resource' name='id_resource' value='$id'>";
                     echo "<input type='submit' class='btn btn-primary' value='Modificar'>";
                 echo "</form>";
+                echo "</div>";
+                echo "<div class='d-flex'>";
                 echo "<form method='post' action='index.php?action=eliminarResource'>";
                     echo "<input type='hidden' id='id_resource' name='id_resource' value='$id'>";
                     echo "<input type='submit' class='btn btn-danger' value='Eliminar'>";
                 echo "</form>";
-            echo "</div>";
+                echo "</div>";
+                echo "</div>";
             echo "</td>";
         echo "</tr>";
     }
@@ -50,7 +54,9 @@ echo "</table>";
 echo "</div>";
 
 echo "<br><form method='post' action='index.php?action=showAddResource'>";
-    echo "<button type='submit'>Añadir nuevo</button>";
+echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
+echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
+echo "</div>";
 echo "</form>";
 
 ?>
