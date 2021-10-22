@@ -2,6 +2,7 @@
     require_once("conexion.php");
 
 class User{
+
     static function UserList(){
         $db = new conexion;
         $db->conectar();
@@ -25,18 +26,18 @@ class User{
         }
     }
     
-    static function ModifyUser($id,$username,$password,$realname,$type){
+    static function ModifyUser($id,$username,$password,$realname){
         $db = new conexion;
         $db->conectar();
-        $sql = ("UPDATE users SET username = '$username',password = '$password',realname = '$realname', type = '$type' WHERE idUser = $id;");
+        $sql = ("UPDATE users SET username = '$username',password = '$password',realname = '$realname' WHERE idUser = $id;");
         $db->ejecutarSQL($sql);
         $db->cerrar();
     }
 
-    static function addUser($username,$password,$realname,$type){
+    static function addUser($username,$password,$realname){
         $db = new conexion;
         $db->conectar();
-        $sql = ("INSERT INTO users VALUES(NULL, '$username', '$password', '$realname', '$type')");
+        $sql = ("INSERT INTO users VALUES (NULL, '$username', '$password', '$realname', '1');");
         $db->ejecutarSQL($sql);
         $db->cerrar();
     }

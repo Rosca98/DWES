@@ -53,7 +53,7 @@ echo "
 echo "</table>";
 echo "</div>";
 
-echo "<br><form method='post' action='index.php?action=showAdduser'>";
+echo "<br><form method='post' action='index.php?action=showAddUser'>";
     echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
     echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
     echo "</div>";

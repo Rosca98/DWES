@@ -28,7 +28,7 @@
                 <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllResource">Recursos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-light" href="#">Horario</a>
+                <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllTimeSlots">Horario</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllUsers">Usuario</a>

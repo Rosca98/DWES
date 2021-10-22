@@ -1,11 +1,12 @@
 <?php
 require_once("controllers/resourceController.php");
 require_once("controllers/userController.php");
+require_once("controllers/timeslotsController.php");
 
 // Miramos a ver si hay alguna accion pendiente de realizar
 if (!isset($_REQUEST['action'])) {
 // No la hay. Usamos la accion por defecto (mostrar el formulario de login)
-    $action = "showUserList";
+    $action = "showTimeSlotList";
 } else {
 // Si la hay. La recuperamos.
     $action = $_REQUEST['action'];
@@ -14,7 +15,7 @@ if (!isset($_REQUEST['action'])) {
 // Miramos a ver si hay algun controlador pendiente de realizar
 if (!isset($_REQUEST['controller'])) {
     // No lo hay. Usamos la accion por defecto
-        $controller = "userController";
+        $controller = "TimeSlotsController";
     } else {
     // Si lo hay. La recuperamos.
         $controller = $_REQUEST['controller'];
@@ -25,3 +26,29 @@ if (!isset($_REQUEST['controller'])) {
     
     // Ejecutamos el metodo del controlador que se llame como la accion
     $controller->$action();
+/*
+    // Miramos a ver si hay alguna accion pendiente de realizar
+if (!isset($_REQUEST['action'])) {
+    // No la hay. Usamos la accion por defecto (mostrar el formulario de login)
+        $action = "showUserList";
+    } else {
+    // Si la hay. La recuperamos.
+        $action = $_REQUEST['action'];
+    }
+    
+    // Miramos a ver si hay algun controlador pendiente de realizar
+    if (!isset($_REQUEST['controller'])) {
+        // No lo hay. Usamos la accion por defecto
+            $controller = "userController";
+        } else {
+        // Si lo hay. La recuperamos.
+            $controller = $_REQUEST['controller'];
+        }
+        
+        //Creamos el controlador
+        $controller = new $controller();
+        
+        // Ejecutamos el metodo del controlador que se llame como la accion
+        $controller->$action();
+
+        */
