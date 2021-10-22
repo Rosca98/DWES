@@ -17,21 +17,21 @@ class UserController{
      * Muestra lista de Usuarios
      */
     public function showUserList(){
-        $this->view->show("showAllUsers");
+        $this->view->show("users/showAllUsers");
     }
 
     /**
      * Muestra el formulario para añadir usuarios
      */
     public function showAddUser(){
-        $this->view->show("showAddUsers");
+        $this->view->show("users/showAddUsers");
     }
 
     /**
      * Muestra el formulario para modificar usuarios
      */
     public function showModUser(){
-        $this->view->show("showModUsers");
+        $this->view->show("users/showModUsers");
     }
 
     /**

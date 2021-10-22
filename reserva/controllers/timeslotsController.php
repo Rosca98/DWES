@@ -17,21 +17,21 @@ class TimeSlotsController{
      * Muestra lista de TimeSlots
      */
     public function showTimeSlotList(){
-        $this->view->show("showAllTimeSlots");
+        $this->view->show("timeslots/showAllTimeSlots");
     }
 
     /**
      * Muestra el formulario para añadir TimeSlot
      */
     public function showAddTimeSlot(){
-        $this->view->show("showAddTimeSlots");
+        $this->view->show("timeslots/showAddTimeSlots");
     }
 
     /**
      * Muestra el formulario para modificar TimeSlots
      */
     public function showModTimeSlot(){
-        $this->view->show("showModTimeSlots");
+        $this->view->show("timeslots/showModTimeSlots");
     }
 
     /**

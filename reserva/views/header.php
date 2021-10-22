@@ -25,13 +25,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllResource">Recursos</a>
+                <a class="nav-link font-weight-bold text-light"
+                    href="index.php?controller=resourceController&action=showResourcesList">Recursos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllTimeSlots">Horario</a>
+                <a class="nav-link font-weight-bold text-light"
+                    href="index.php?controller=timeslotsController&action=showTimeSlotList">Horario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-light" href="index.php?action=showAllUsers">Usuario</a>
+                <a class="nav-link font-weight-bold text-light"
+                    href="index.php?controller=userController&action=showUserList">Usuario</a>
             </li>
         </ul>
     </div>

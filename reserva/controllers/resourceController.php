@@ -17,21 +17,21 @@ class ResourceController{
      * Muestra lista de Recursos
      */
     public function showResourcesList(){
-        $this->view->show("showAllResources");
+        $this->view->show("resources/showAllResources");
     }
 
     /**
      * Muestra el formulario para añadir recursos
      */
     public function showAddResource(){
-        $this->view->show("showAddResources");
+        $this->view->show("resources/showAddResources");
     }
 
     /**
      * Muestra el formulario para modificar recursos
      */
     public function showModResource(){
-        $this->view->show("showModResources");
+        $this->view->show("resources/showModResources");
     }
 
     /**
