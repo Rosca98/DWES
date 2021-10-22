@@ -14,10 +14,10 @@ class TimeSlot{
         $db->cerrar();
     }
 
-    static function formModTimeSlot($id_TimeSlot){
+    static function formModTimeSlot($id_timeslot){
         $db = new conexion;
         $db->conectar();
-        $id = $id_TimeSlot;
+        $id = $id_timeslot;
 
         if ($result = $db->obtenerInformacion("SELECT * FROM timeslots WHERE idTimeSlot = $id")) {
             return $result;

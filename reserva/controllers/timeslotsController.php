@@ -50,7 +50,7 @@ class TimeSlotsController{
      * Eliminar el TimeSlot
      */
     public function eliminarTimeslot(){
-        $id = $_REQUEST['id_timeslots'];
+        $id = $_REQUEST['id_timeslot'];
         $this->timeslot->deleteTimeSlot($id);
         //Volver a la lista de TimeSlot
         header('Location: index.php?action=showTimeSlotList');
