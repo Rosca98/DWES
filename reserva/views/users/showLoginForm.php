@@ -15,6 +15,14 @@ echo"<form method='post' action='index.php?controller=userController&action=proc
         <label for='password' class='form-label'>Password:</label>
         <input type='password' class='form-control' id='password' placeholder='Introduce la contraseña' name='password'>
     </div>
+    <div class='d-grid gap-2 d-md-flex justify-content-md-center'>
     <input type='hidden' name='action' value='processLoginForm'>
-    <input type='submit' class='btn btn-primary'>Submit</input>
+    <input type='submit' value='Login' class='btn btn-primary'>
+    </div>
 </form>";
+
+echo "<br><form method='post' action='index.php?controller=userController&action=showAddUser'>";
+    echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
+    echo "<button class='btn btn-primary' type='submit'>Registrarse</button>";
+    echo "</div>";
+echo "</form>";
