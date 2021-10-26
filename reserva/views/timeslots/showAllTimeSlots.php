@@ -1,6 +1,6 @@
 <?php
 include_once ("models/timeslots.php");
-//Mostramos una lista con diferentes recursos que tengamos listados
+
 echo "
     <h1 class='text-center'>Lista de TimeSlots</h1>
     <div class='container-sm pt-5'>
@@ -31,13 +31,13 @@ echo "
             echo "<td>";
             echo "<div class='d-flex flex-row justify-content-around'>";
             echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=showModTimeslot'>";
+                echo "<form method='post' action='index.php?controller=timeslotsController&action=showModTimeslot'>";
                     echo "<input type='hidden' id='id_timeslot' name='id_timeslot' value='$id'>";
                     echo "<input type='submit' class='btn btn-primary' value='Modificar'>";
                 echo "</form>";
                 echo "</div>";
                 echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=eliminarTimeslot'>";
+                echo "<form method='post' action='index.php?controller=timeslotsController&action=eliminarTimeslot'>";
                     echo "<input type='hidden' id='id_timeslot' name='id_timeslot' value='$id'>";
                     echo "<input type='submit' class='btn btn-danger' value='Eliminar'>";
                 echo "</form>";
@@ -50,7 +50,7 @@ echo "
 echo "</table>";
 echo "</div>";
 
-echo "<br><form method='post' action='index.php?action=showAddTimeslot'>";
+echo "<br><form method='post' action='index.php?controller=timeslotsController&action=showAddTimeslot'>";
     echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
     echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
     echo "</div>";

@@ -1,6 +1,6 @@
 <?php
 include_once ("./models/resources.php");
-//Mostramos una lista con diferentes recursos que tengamos listados
+
 echo "
     <h1 class='text-center'>Lista de Recursos</h1>
     <div class='container-sm pt-5'>
@@ -34,13 +34,13 @@ echo "
             echo "<td>";
             echo "<div class='d-flex flex-row justify-content-around'>";
             echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=showModResource'>";
+                echo "<form method='post' action='index.php?controller=resourceController&action=showModResource'>";
                     echo "<input type='hidden' id='id_resource' name='id_resource' value='$id'>";
                     echo "<input type='submit' class='btn btn-primary' value='Modificar'>";
                 echo "</form>";
                 echo "</div>";
                 echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=eliminarResource'>";
+                echo "<form method='post' action='index.php?controller=resourceController&action=eliminarResource'>";
                     echo "<input type='hidden' id='id_resource' name='id_resource' value='$id'>";
                     echo "<input type='submit' class='btn btn-danger' value='Eliminar'>";
                 echo "</form>";
@@ -53,7 +53,7 @@ echo "
 echo "</table>";
 echo "</div>";
 
-echo "<br><form method='post' action='index.php?action=showAddResource'>";
+echo "<br><form method='post' action='index.php?controller=resourceController&action=showAddResource'>";
 echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
 echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
 echo "</div>";

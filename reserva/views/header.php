@@ -26,6 +26,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link font-weight-bold text-light"
+                    href="index.php?controller=userController&action=showUserList">Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold text-light"
                     href="index.php?controller=resourceController&action=showResourcesList">Recursos</a>
             </li>
             <li class="nav-item">
@@ -34,7 +38,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link font-weight-bold text-light"
-                    href="index.php?controller=userController&action=showUserList">Usuario</a>
+                    href="index.php?controller=reservationController&action=showReservationList">Reservas</a>
             </li>
         </ul>
     </div>

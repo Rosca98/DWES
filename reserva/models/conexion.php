@@ -25,7 +25,7 @@ class conexion{
         }
     }
 
-    function obtenerInformacion($sql){
+    function dataQuery($sql){
         $data = array();
         $resultado = mysqli_query($this -> connection, $sql);
         $error = mysqli_error($this -> connection);
@@ -42,7 +42,7 @@ class conexion{
         return $data;
     }
     
-    function ejecutarSQL($sql){
+    function dataManipulation($sql){
         $conectado = mysqli_query($this -> connection, $sql);
 
         $error = mysqli_error($this -> connection);

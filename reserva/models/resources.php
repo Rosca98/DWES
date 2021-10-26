@@ -5,7 +5,7 @@ class Resource{
     static function ResourcesList(){
         $db = new conexion;
         $db->conectar();
-        if ($result = $db->obtenerInformacion("SELECT * FROM resources")) {
+        if ($result = $db->dataQuery("SELECT * FROM resources")) {
                 return $result;
         }else {
             return null;
@@ -18,7 +18,7 @@ class Resource{
         $db->conectar();
         $id = $id_Resource;
 
-        if ($result = $db->obtenerInformacion("SELECT * FROM resources WHERE idResource = $id")) {
+        if ($result = $db->dataQuery("SELECT * FROM resources WHERE idResource = $id")) {
             return $result;
         }else {
             return null;
@@ -29,7 +29,7 @@ class Resource{
         $db = new conexion;
         $db->conectar();
         $sql = ("UPDATE resources SET name = '$name',description = '$desc',location = '$location', image = '$img' WHERE idResource = $id;");
-        $db->ejecutarSQL($sql);
+        $db->dataManipulation($sql);
         $db->cerrar();
     }
 
@@ -37,7 +37,7 @@ class Resource{
         $db = new conexion;
         $db->conectar();
         $sql = ("INSERT INTO resources VALUES(NULL, '$name', '$desc', '$location', '$img_ruta')");
-        $db->ejecutarSQL($sql);
+        $db->dataManipulation($sql);
         $db->cerrar();
     }
 
@@ -45,8 +45,19 @@ class Resource{
         $db = new conexion;
         $db->conectar();
         $sql = ("DELETE FROM resources WHERE idResource = $id");
-        $db->ejecutarSQL($sql);
+        $db->dataManipulation($sql);
         $db->cerrar();
+    }
+
+    static function getResourceName($id){
+        $db = new conexion;
+        $db->conectar();
+        $sql = ("SELECT name FROM resources WHERE idResource = $id");
+        $result = $db->dataQuery($sql);
+        $db->cerrar();
+        foreach ($result as $name) {
+            return $name["name"];
+        }
     }
 }
 

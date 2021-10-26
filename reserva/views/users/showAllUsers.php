@@ -1,6 +1,6 @@
 <?php
 include_once ("./models/users.php");
-//Mostramos una lista con diferentes recursos que tengamos listados
+
 echo "
     <h1 class='text-center'>Lista de Usuarios</h1>
     <div class='container-sm pt-5'>
@@ -34,13 +34,13 @@ echo "
             echo "<td>";
             echo "<div class='d-flex flex-row justify-content-around'>";
             echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=showModUser'>";
+                echo "<form method='post' action='index.php?controller=userController&action=showModUser'>";
                     echo "<input type='hidden' id='id_user' name='id_user' value='$id'>";
                     echo "<input type='submit' class='btn btn-primary' value='Modificar'>";
                 echo "</form>";
                 echo "</div>";
                 echo "<div class='d-flex'>";
-                echo "<form method='post' action='index.php?action=eliminarUser'>";
+                echo "<form method='post' action='index.php?controller=userController&action=eliminarUser'>";
                     echo "<input type='hidden' id='id_user' name='id_user' value='$id'>";
                     echo "<input type='submit' class='btn btn-danger' value='Eliminar'>";
                 echo "</form>";
@@ -53,7 +53,7 @@ echo "
 echo "</table>";
 echo "</div>";
 
-echo "<br><form method='post' action='index.php?action=showAddUser'>";
+echo "<br><form method='post' action='index.php?controller=userController&action=showAddUser'>";
     echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
     echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
     echo "</div>";

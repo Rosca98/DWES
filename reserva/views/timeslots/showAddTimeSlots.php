@@ -1,5 +1,5 @@
 <?php
-echo "<form action='index.php?action=processAddTimeSlot' method='post' enctype='multipart/form-data'>";
+echo "<form action='index.php?controller=timeslotsController&action=processAddTimeSlot' method='post' enctype='multipart/form-data'>";
     echo "<div class='form-group'>";
         echo "<label for='timeslot_dayofWeek'>Day of Week:</label>";
         echo "<select class='form-control' id='timeslot_dayofWeek' name='timeslot_dayofWeek' placeholder='dayofWeek'>

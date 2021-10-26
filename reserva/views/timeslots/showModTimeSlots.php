@@ -10,7 +10,7 @@
         $startTime = $result['startTime'];
         $endTime = $result['endTime'];
         
-        echo "<form action='index.php?action=ProcessModifyTimeSlot' method='post' enctype='multipart/form-data'>";
+        echo "<form action='index.php?controller=timeslotsController&action=ProcessModifyTimeSlot' method='post' enctype='multipart/form-data'>";
         echo "<div class='form-group'>";
         echo "<input type='hidden' name='timeslot_id' id='timeslot_id' value='$id'";
         echo "<label for='timeslot_dayofWeek'>Day of Week:</label>";

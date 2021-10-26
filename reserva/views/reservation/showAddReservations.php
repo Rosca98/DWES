@@ -1,5 +1,11 @@
 <?php
-echo "<form action='index.php?controller=resourceController&action=processAddResource' method='post' enctype='multipart/form-data'>";
+include_once ("./models/reservations.php");
+include_once ("./models/resources.php");
+include_once ("./models/timeSlots.php");
+include_once ("./models/users.php");
+
+
+echo "<form action='index.php?controller=reservationController&action=processAddReservation' method='post' enctype='multipart/form-data'>";
     echo "<div class='form-group'>";
         echo "<label for='resource_name'>Nombre de recurso:</label>";
         echo "<input type='text' class='form-control' id='resource_name' name='resource_name' placeholder='Nombre'>";

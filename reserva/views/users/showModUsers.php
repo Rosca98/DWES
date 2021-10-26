@@ -10,7 +10,7 @@
         $password = $result['password'];
         $realname = $result['realname'];
 
-        echo "<form action='index.php?action=ProcessModifyUser' method='post' enctype='multipart/form-data'>";
+        echo "<form action='index.php?controller=userController&action=ProcessModifyUser' method='post' enctype='multipart/form-data'>";
         echo "<div class='form-group'>";
             echo "<input type='hidden' name='user_id' id='user_id' value='$id'";
             echo "<label for='user_username'>Usernama:</label>";

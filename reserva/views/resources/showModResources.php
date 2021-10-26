@@ -11,7 +11,7 @@
         $location = $result['location'];
         $image = $result['image'];
 
-        echo "<form action='index.php?action=ProcessModifyResource' method='post' enctype='multipart/form-data'>";
+        echo "<form action='index.php?controller=resourceController&action=ProcessModifyResource' method='post' enctype='multipart/form-data'>";
         echo "<div class='form-group'>";
             echo "<input type='hidden' name='resource_id' id='resource_id' value='$id'";
             echo "<label for='resource_name'>Nombre de recurso:</label>";

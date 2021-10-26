@@ -43,7 +43,7 @@ class TimeSlotsController{
         $endTime = $_REQUEST["timeslot_endTime"];
 
         $this->timeslot->addTimeSlot($dayofWeek,$startTime,$endTime);
-        header('Location: index.php?action=showTimeSlotList');
+        header('Location: index.php?controller=timeslotsController&action=showTimeSlotList');
     }
 
     /**
@@ -53,7 +53,7 @@ class TimeSlotsController{
         $id = $_REQUEST['id_timeslot'];
         $this->timeslot->deleteTimeSlot($id);
         //Volver a la lista de TimeSlot
-        header('Location: index.php?action=showTimeSlotList');
+        header('Location: index.php?controller=timeslotsController&action=showTimeSlotList');
     }
 
     /**

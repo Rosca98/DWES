@@ -50,7 +50,7 @@ class ResourceController{
             echo "Error";
         }                
         $this->resource->addResource($name,$desc,$location,$img_ruta);
-        header('Location: index.php?action=showResourcesList');
+        header('Location: index.php?controller=resourceController&action=showResourcesList');
     }
 
     /**
@@ -60,7 +60,7 @@ class ResourceController{
         $id = $_REQUEST['id_resource'];
         $this->resource->deleteResource($id);
         //Volver a la lista de Resources
-        header('Location: index.php?action=showResourcesList');
+        header('Location: index.php?controller=resourceController&action=showResourcesList');
     }
 
     /**

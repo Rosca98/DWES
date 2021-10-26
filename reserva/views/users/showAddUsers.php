@@ -1,5 +1,5 @@
 <?php
-echo "<form action='index.php?action=processAddUser' method='post' enctype='multipart/form-data'>";
+echo "<form action='index.php?controller=userController&action=processAddUser' method='post' enctype='multipart/form-data'>";
     echo "<div class='form-group'>";
         echo "<label for='user_username'>Username:</label>";
         echo "<input type='text' class='form-control' id='user_username' name='user_username' placeholder='Nombre'>";
