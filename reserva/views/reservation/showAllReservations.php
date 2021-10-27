@@ -3,6 +3,7 @@ include_once ("./models/reservation.php");
 include_once ("./models/resources.php");
 include_once ("./models/users.php");
 include_once ("./models/timeslots.php");
+include_once ("./models/security.php");
 
 echo "
     <h1 class='text-center'>Lista de Reservas</h1>
@@ -36,6 +37,7 @@ echo "
         $day = TimeSlot::getTimeSlotDay($idTimeSlot);
         $startTime = TimeSlot::getStartTime($idTimeSlot);
         $endTime = TimeSlot::getEndTime($idTimeSlot);
+        echo Security::getUserId();
         echo "<tr>";
             echo "<td class='text-center' scope='row'>$resourceName</td>";
             echo "<td class='text-center'>$userName</td>";
@@ -64,7 +66,7 @@ echo "
 echo "</table>";
 echo "</div>";
 
-echo "<br><form method='post' action='index.php?controller=reservationController&action=showAddReservation>";
+echo "<br><form method='post' action='index.php?controller=reservationController&action=showAddReservation'>";
 echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
 echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
 echo "</div>";

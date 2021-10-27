@@ -1,34 +1,35 @@
 <?php
-include_once ("./models/reservations.php");
+include_once ("./models/reservation.php");
 include_once ("./models/resources.php");
 include_once ("./models/timeSlots.php");
 include_once ("./models/users.php");
 
-
-echo "<form action='index.php?controller=reservationController&action=processAddReservation' method='post' enctype='multipart/form-data'>";
-    echo "<div class='form-group'>";
-        echo "<label for='resource_name'>Nombre de recurso:</label>";
-        echo "<input type='text' class='form-control' id='resource_name' name='resource_name' placeholder='Nombre'>";
+foreach ($resource_names as $result) {
+    $id = $result['idReservation'];
+    $idResource = $result['idResource'];
+    $idUser = $result['idUser'];
+    $idTimeSlot = $result['idTimeSlot'];
+    $date = $result['date'];
+    $remarks = $result['remarks'];
+    
+    $resourceName = Resource::getResourceName($idResource);
+    $userName = User::getUserName($idUser);
+    $day = TimeSlot::getTimeSlotDay($idTimeSlot);
+    $startTime = TimeSlot::getStartTime($idTimeSlot);
+    $endTime = TimeSlot::getEndTime($idTimeSlot);
+    Resource::showAllResources();
+    
+        echo "<form action='index.php?controller=reservationController&action=ProcessModifyReservation' method='post' enctype='multipart/form-data'>";
+        echo "<div class='form-group'>";
+        echo "<label for='timeslot_dayofWeek'>Day of Week:</label>";
+        echo "<select class='form-control' id='timeslot_dayofWeek' name='timeslot_dayofWeek' placeholder='dayofWeek'>
+            <option>$result</option>
+        </select>";
     echo "</div>";
 
-    echo "<div class='form-group'>";
-        echo "<label for='resource_name'>Descripción de recurso:</label>";
-        echo "<input type='text' class='form-control' name='resource_desc' id='resource_desc' placeholder='Descripción'>";
-    echo "</div>";
-
-    echo "<div class='form-group'>";
-        echo "<label for='resource_location'>Ubicación del recurso:</label>";
-        echo "<input type='text' class='form-control' name='resource_location' id='resource_location' placeholder='Ubicación'>";
-    echo "</div>";
-
-    echo "<div class='d-flex mt-2 align-items-center justify-content-center flex-wrap flex-row'>";
-        echo "<label for='resource_img'>Imagen del recurso:</label>";
-        echo "<input type='file' name='img_upload' required id='img_upload'>";
-    echo "</div>";
-
-    echo "<div class='mt-2 d-flex align-items-center justify-content-center flex-wrap flex-column'>";
-        echo "<input type='submit' class='btn btn-success' value='Añadir recurso'>";
-    echo "</div>";
-echo "</form>";
-
+        echo "<div>";
+            echo "<input type='submit' value='Modificar Usuario'>";
+        echo "</div>";
+        echo "</form>";
+    }
 ?>

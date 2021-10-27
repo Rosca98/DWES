@@ -65,10 +65,12 @@ class User{
         $db = new conexion;
         $db->conectar();
         $result = $db->dataQuery("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
-        if (count($result) > 0)
+        if (count($result) > 0){
+            Security::createSession($result[0]['idUser']);
              return $result[0];
-         else
+        }else{
              return null;
+        }
         $db->cerrar();
     }
 }

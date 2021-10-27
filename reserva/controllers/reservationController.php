@@ -1,6 +1,8 @@
 <?php 
     require_once("view.php");
     require_once("models/reservation.php");
+    require_once("models/resources.php");
+    require_once("models/timeslots.php");
 
 
 class ReservationController{
@@ -24,7 +26,8 @@ class ReservationController{
      * Muestra el formulario para añadir reservas
      */
     public function showAddReservation(){
-        $this->view->show("reservation/showAddReservations");
+        $resource_names['name'] = Resource::showAllResources();
+        $this->view->show("reservation/showAddReservations", $resource_names);
     }
 
     /**

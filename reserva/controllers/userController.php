@@ -40,10 +40,10 @@ class UserController{
      */
     public function processAddUser(){
         $username = $_REQUEST["user_username"];
-        $passwordword = $_REQUEST["user_passwordword"];
+        $password = $_REQUEST["user_password"];
         $realname = $_REQUEST["user_realname"];
 
-        $this->user->addUser($username,$passwordword,$realname);
+        $this->user->addUser($username,$password,$realname);
         header('Location: index.php?controller=userController&action=showUserList');
     }
 
@@ -63,10 +63,10 @@ class UserController{
     public function ProcessModifyUser(){     
         $id = $_REQUEST["user_id"];
         $username = $_REQUEST["user_username"];
-        $passwordword = $_REQUEST["user_passwordword"];
+        $password = $_REQUEST["user_password"];
         $realname = $_REQUEST["user_realname"];
         
-        $this->user->ModifyUser($id,$username,$passwordword,$realname);
+        $this->user->ModifyUser($id,$username,$password,$realname);
         header('Location: index.php');
     }    
 
@@ -99,7 +99,7 @@ class UserController{
 
             if ($userData!=null) {
                 // Login correcto: creamos la sesión y pedimos al usuario que elija su rol
-                Security::createSession($userData['id']);
+                Security::createSession($userData['idUser']);
                 $this->view->show("reservation/showAllReservations");
             }
             else {

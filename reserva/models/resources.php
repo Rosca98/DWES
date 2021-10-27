@@ -59,6 +59,14 @@ class Resource{
             return $name["name"];
         }
     }
+
+    static function showAllResources(){
+        $db = new conexion;
+        $db->conectar();
+        $sql = ("SELECT name FROM resources");
+        $result = $db->dataQuery($sql);
+        $db->cerrar();
+    }
 }
 
 ?>
