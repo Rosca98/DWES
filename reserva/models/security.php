@@ -1,5 +1,5 @@
 <?php
-
+    require_once("conexion.php");
 
 class Security {
 
@@ -46,6 +46,5 @@ class Security {
         // (Está sin implementar)
         return $str;
     }
-
 
 }

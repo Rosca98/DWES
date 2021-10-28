@@ -61,15 +61,28 @@ class User{
         }
     }
 
-    public function checkLogin($username, $password){
+    static function getUserRol(){
+        $db = new conexion;
+        $db->conectar();
+        if (isset($_SESSION['idUser'])) {
+        $idUser = $_SESSION['idUser'];
+        $sql = ("SELECT type FROM users WHERE idUser = $idUser");
+        $result = $db->dataQuery($sql);
+        $db->cerrar();
+            return $result[0];
+        }
+        $db->cerrar();
+    }
+
+    static function checkLogin($username, $password){
         $db = new conexion;
         $db->conectar();
         $result = $db->dataQuery("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
         if (count($result) > 0){
             Security::createSession($result[0]['idUser']);
-             return $result[0];
+            return $result[0];
         }else{
-             return null;
+            return null;
         }
         $db->cerrar();
     }
