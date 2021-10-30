@@ -4,37 +4,44 @@
 class Reservation{
     static function ReservationList(){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         if ($result = $db->dataQuery("SELECT * FROM reservations")) {
                 return $result;
         }else {
             return null;
         }
-        $db->cerrar();
-    }
-    
-    static function ModifyReservation($id,$idResource,$idUser,$idTimeSlot,$remarks){
-        $db = new conexion;
-        $db->conectar();
-        $sql = ("UPDATE reservation SET idResource = '$idResource', idUser = '$idUser', idTimeSlot = '$idTimeSlot', remarks = '$remarks' WHERE idReservation = $id;");
-        $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
     }
 
     static function addReservation($idResource,$idUser,$idTimeSlot,$remarks){
         $db = new conexion;
-        $db->conectar();
-        $sql = ("INSERT INTO reservation VALUES(NULL, '$idResource', '$idUser', '$idTimeSlot', '$remarks')");
+        $db->connect();
+        $date = date("Y-m-d H:i:s");
+        $sql = ("INSERT INTO reservations VALUES(NULL, '$idResource', '$idUser', '$idTimeSlot', '$date', '$remarks')");
         $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
     }
 
     static function deleteReservation($id){
         $db = new conexion;
-        $db->conectar();
-        $sql = ("DELETE FROM reservation WHERE idReservation = $id");
+        $db->connect();
+        $sql = ("DELETE FROM reservations WHERE idReservation = $id");
         $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
+    }
+
+    static function isAvaliable($idResource, $idTimeSlot){
+        $db = new conexion;
+        $db->connect();
+        $result = $db->dataQuery("SELECT * FROM Reservations WHERE idResource = $idResource AND idTimeSlot = $idTimeSlot;");
+
+        if(empty($result)){
+            $avaliable = true;
+        }else{
+            $avaliable = false;
+        }
+        $db->close();
+        return $avaliable;
     }
 }
 

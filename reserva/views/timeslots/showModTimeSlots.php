@@ -25,16 +25,16 @@
 
         echo "<div class='form-group'>";
             echo "<label for='timeslot_startTime'>Start Time</label>";
-            echo "<input type='text' class='form-control' name='timeslot_startTime' id='timeslot_starTime' value='$startTime'>";
+            echo "<input type='time' class='form-control' name='timeslot_startTime' id='timeslot_starTime' value='$startTime'>";
         echo "</div>";
     
         echo "<div class='form-group'>";
-            echo "<label for='timeslot_endTime'>Real name:</label>";
-            echo "<input type='text' class='form-control' name='timeslot_endTime' id='timeslot_endTime' value='$endTime'>";
+            echo "<label for='timeslot_endTime'>End Time:</label>";
+            echo "<input type='time' class='form-control' name='timeslot_endTime' id='timeslot_endTime' value='$endTime'>";
         echo "</div>";
 
         echo "<div>";
-            echo "<input type='submit' value='Modificar Usuario'>";
+            echo "<input type='submit' value='Modificar TimeSlot'>";
         echo "</div>";
         echo "</form>";
     }

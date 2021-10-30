@@ -12,7 +12,7 @@ class conexion{
         $this->db = "reservas";
     }
 
-    function conectar(){
+    function connect(){
         $this->connection = mysqli_connect(
             $this->server,
             $this->user,
@@ -21,7 +21,7 @@ class conexion{
         );
 
         if (mysqli_connect_errno()) {
-            echo ("Error al conectarse a la base de datos");
+            echo ("Error al connectse a la base de datos");
         }
     }
 
@@ -54,7 +54,7 @@ class conexion{
         }
     }
 
-    function cerrar(){
+    function close(){
         mysqli_close($this -> connection);
     }
 

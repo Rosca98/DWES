@@ -12,12 +12,12 @@ echo "<form action='index.php?controller=timeslotsController&action=processAddTi
     echo "</div>";
 
     echo "<div class='form-group'>";
-        echo "<label for='timeslot_starTime'>StartTime:</label>";
+        echo "<label for='timeslot_starTime'>Start Time:</label>";
         echo "<input type='time' class='form-control' name='timeslot_startTime' id='timeslot_starTime' placeholder='StarTime'>";
     echo "</div>";
 
     echo "<div class='form-group'>";
-        echo "<label for='timeslot_endTime'>endTime:</label>";
+        echo "<label for='timeslot_endTime'>End Time:</label>";
         echo "<input type='time' class='form-control' name='timeslot_endTime' id='timeslot_endTime' placeholder='endTime'>";
     echo "</div>";
 

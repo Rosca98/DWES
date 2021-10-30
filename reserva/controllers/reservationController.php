@@ -26,49 +26,38 @@ class ReservationController{
      * Muestra el formulario para añadir reservas
      */
     public function showAddReservation(){
-        $resource_names['name'] = Resource::showAllResources();
-        $this->view->show("reservation/showAddReservations", $resource_names);
-    }
-
-    /**
-     * Muestra el formulario para modificar reservas
-     */
-    public function showModReservation(){
-        $this->view->show("reservation/showModReservations");
+        $this->view->show("reservation/showAddReservations");
+        
     }
 
     /**
      * Procesamos la informacion para añadir la nueva reserva
      */
     public function processAddReservation(){
-        $username = $_REQUEST["user_username"];
-        $password = $_REQUEST["user_password"];
-        $realname = $_REQUEST["user_realname"];
+        $user = $_REQUEST["user_id"];
+        $resource = $_REQUEST["resource_id"];
+        $timeslot = $_REQUEST["timeslot_id"];
+        $remarks = $_REQUEST["remarks"];
 
-        $this->user->addUser($username,$password,$realname);
-        header('Location: index.php?action=showUserList');
+        $avaliable = Reservation::isAvaliable($resource, $timeslot);
+        
+        if($avaliable){
+            $this->reservation->addReservation($resource,$user,$timeslot,$remarks);
+            header('Location: index.php?controller=reservationController&action=showReservationList');
+        }else{
+            $data['errorMsg'] = "Ya existe una reserva para ese recurso en esa hora, por favor, prueba otra";
+            $this->view->show("reservation/showAddReservations", $data);
+        }
     }
 
     /**
      * Eliminar la reserva
      */
     public function eliminarReservation(){
-        $id = $_REQUEST['id_user'];
-        $this->user->deleteUser($id);
+        $id = $_REQUEST['id_reservation'];
+        $this->reservation->deleteReservation($id);
         //Volver a la lista de Usuarios
-        header('Location: index.php?action=showUserList');
+        header('Location: index.php?controller=reservationController&action=showReservationList');
     }
-
-    /**
-     * Modificar la reserva
-     */
-    public function ProcessModifyReservation(){     
-        $id = $_REQUEST["user_id"];
-        $username = $_REQUEST["user_username"];
-        $password = $_REQUEST["user_password"];
-        $realname = $_REQUEST["user_realname"];
-        
-        $this->user->ModifyUser($id,$username,$password,$realname);
-        header('Location: index.php');
-    }    
+  
 }

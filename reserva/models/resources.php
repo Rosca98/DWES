@@ -4,18 +4,18 @@
 class Resource{
     static function ResourcesList(){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         if ($result = $db->dataQuery("SELECT * FROM resources")) {
                 return $result;
         }else {
             return null;
         }
-        $db->cerrar();
+        $db->close();
     }
 
     static function formModResource($id_Resource){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         $id = $id_Resource;
 
         if ($result = $db->dataQuery("SELECT * FROM resources WHERE idResource = $id")) {
@@ -27,34 +27,34 @@ class Resource{
     
     static function ModifyResource($id,$name,$desc,$location,$img){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         $sql = ("UPDATE resources SET name = '$name',description = '$desc',location = '$location', image = '$img' WHERE idResource = $id;");
         $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
     }
 
     static function addResource($name,$desc,$location,$img_ruta){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         $sql = ("INSERT INTO resources VALUES(NULL, '$name', '$desc', '$location', '$img_ruta')");
         $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
     }
 
     static function deleteResource($id){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         $sql = ("DELETE FROM resources WHERE idResource = $id");
         $db->dataManipulation($sql);
-        $db->cerrar();
+        $db->close();
     }
 
     static function getResourceName($id){
         $db = new conexion;
-        $db->conectar();
+        $db->connect();
         $sql = ("SELECT name FROM resources WHERE idResource = $id");
         $result = $db->dataQuery($sql);
-        $db->cerrar();
+        $db->close();
         foreach ($result as $name) {
             return $name["name"];
         }
@@ -62,10 +62,13 @@ class Resource{
 
     static function showAllResources(){
         $db = new conexion;
-        $db->conectar();
-        $sql = ("SELECT name FROM resources");
+        $db->connect();
+        $sql = ("SELECT * FROM resources");
         $result = $db->dataQuery($sql);
-        $db->cerrar();
+        foreach ($result as $resource) {
+            echo "<option value=".$resource['idResource'].">".$resource['name']."</option>";
+        }
+        $db->close();
     }
 }
 

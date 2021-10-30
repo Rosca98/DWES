@@ -7,7 +7,7 @@ echo "<form action='index.php?controller=userController&action=processAddUser' m
 
     echo "<div class='form-group'>";
         echo "<label for='user_password'>Password:</label>";
-        echo "<input type='text' class='form-control' name='user_password' id='user_password' placeholder='Password'>";
+        echo "<input type='password' class='form-control' name='user_password' id='user_password' placeholder='Password'>";
     echo "</div>";
 
     echo "<div class='form-group'>";

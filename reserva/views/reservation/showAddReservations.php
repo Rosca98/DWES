@@ -1,35 +1,74 @@
 <?php
 include_once ("./models/reservation.php");
 include_once ("./models/resources.php");
-include_once ("./models/timeSlots.php");
 include_once ("./models/users.php");
+include_once ("./models/timeslots.php");
 
-foreach ($resource_names as $result) {
-    $id = $result['idReservation'];
-    $idResource = $result['idResource'];
-    $idUser = $result['idUser'];
-    $idTimeSlot = $result['idTimeSlot'];
-    $date = $result['date'];
-    $remarks = $result['remarks'];
-    
-    $resourceName = Resource::getResourceName($idResource);
-    $userName = User::getUserName($idUser);
-    $day = TimeSlot::getTimeSlotDay($idTimeSlot);
-    $startTime = TimeSlot::getStartTime($idTimeSlot);
-    $endTime = TimeSlot::getEndTime($idTimeSlot);
-    Resource::showAllResources();
-    
-        echo "<form action='index.php?controller=reservationController&action=ProcessModifyReservation' method='post' enctype='multipart/form-data'>";
+        if (empty($data)){
+            echo "<form action='index.php?controller=reservationController&action=ProcessAddReservation' method='post' enctype='multipart/form-data'>";
         echo "<div class='form-group'>";
-        echo "<label for='timeslot_dayofWeek'>Day of Week:</label>";
-        echo "<select class='form-control' id='timeslot_dayofWeek' name='timeslot_dayofWeek' placeholder='dayofWeek'>
-            <option>$result</option>
-        </select>";
-    echo "</div>";
-
+        echo "<label for='user_name'>Usuario:</label>";
+            echo "<select class='form-control' id='user_id' name='user_id' placeholder='username'>";
+                echo "<option disabled selected>Elige el usuario</option>";
+                User::showAllUsers();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='resource_name'>Nombre de recurso:</label>";
+            echo "<select class='form-control' id='resource_id' name='resource_id' placeholder='resource'>";
+                echo "<option disabled selected>Elige el recurso</option>";
+                Resource::showAllResources();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='resource_name'>Tramo Horario:</label>";
+            echo "<select class='form-control' id='timeslot_id' name='timeslot_id' placeholder='dayofWeek'>";
+                echo "<option disabled selected>Elige el recurso</option>";
+                TimeSlot::showAllTimeSlots();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='remarks'>Remarks:</label>";
+        echo "<input type='text' class='form-control' name='remarks' id='remarks' placeholder='Remarks'>";
+        echo "</div>";
+        echo "</div>";
         echo "<div>";
-            echo "<input type='submit' value='Modificar Usuario'>";
+            echo "<input type='submit' value='Modificar TimeSlot'>";
         echo "</div>";
         echo "</form>";
-    }
+        }else{
+        $error = 'Ya existe una reserva para ese recurso en esa hora, por favor, prueba otra';
+        echo "<script type='text/javascript'>alert('$error');</script>";
+        echo "<form action='index.php?controller=reservationController&action=ProcessAddReservation' method='post' enctype='multipart/form-data'>";
+        echo "<div class='form-group'>";
+        echo "<label for='user_name'>Usuario:</label>";
+            echo "<select class='form-control' id='user_id' name='user_id' placeholder='username'>";
+                echo "<option disabled selected>Elige el usuario</option>";
+                User::showAllUsers();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='resource_name'>Nombre de recurso:</label>";
+            echo "<select class='form-control' id='resource_id' name='resource_id' placeholder='resource'>";
+                echo "<option disabled selected>Elige el recurso</option>";
+                Resource::showAllResources();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='resource_name'>Tramo Horario:</label>";
+            echo "<select class='form-control' id='timeslot_id' name='timeslot_id' placeholder='dayofWeek'>";
+                echo "<option disabled selected>Elige el recurso</option>";
+                TimeSlot::showAllTimeSlots();
+            echo "</select>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+        echo "<label for='remarks'>Remarks:</label>";
+        echo "<input type='text' class='form-control' name='remarks' id='remarks' placeholder='Remarks'>";
+        echo "</div>";
+        echo "</div>";
+        echo "<div>";
+            echo "<input type='submit' value='Modificar TimeSlot'>";
+        echo "</div>";
+        echo "</form>";
+        }
 ?>
