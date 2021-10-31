@@ -104,6 +104,12 @@ echo "</form>";
         echo "</tr>";
     }
     echo "</tbody>";
+    echo "</table>";
+echo "<br><form method='post' action='index.php?controller=userController&action=showLoginForm'>";
+    echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
+    echo "<button class='btn btn-primary' type='submit'>Login</button>";
+    echo "</div>";
+echo "</form>";
 echo "</table>";
 echo "<br><form method='post' action='index.php?controller=userController&action=showAddUser'>";
     echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";

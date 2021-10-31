@@ -99,7 +99,7 @@ class UserController{
 
             if ($userData!=null) {
                 // Login correcto: creamos la sesión y pedimos al usuario que elija su rol
-                Security::createSession($userData['idUser']);
+                //Security::createSession($userData['idUser']);
                 $this->view->show("reservation/showAllReservations");
             }
             else {

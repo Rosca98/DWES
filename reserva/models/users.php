@@ -29,7 +29,8 @@ class User{
     static function ModifyUser($id,$username,$password,$realname){
         $db = new conexion;
         $db->connect();
-        $sql = ("UPDATE users SET username = '$username',password = '$password',realname = '$realname' WHERE idUser = $id;");
+        $passwordmd5 = md5($password);
+        $sql = ("UPDATE users SET username = '$username',password = '$passwordmd5',realname = '$realname' WHERE idUser = $id;");
         $db->dataManipulation($sql);
         $db->close();
     }
@@ -37,7 +38,8 @@ class User{
     static function addUser($username,$password,$realname){
         $db = new conexion;
         $db->connect();
-        $sql = ("INSERT INTO users VALUES (NULL, '$username', '$password', '$realname', '1');");
+        $passwordmd5 = md5($password);
+        $sql = ("INSERT INTO users VALUES (NULL, '$username', '$passwordmd5', '$realname', '1');");
         $db->dataManipulation($sql);
         $db->close();
     }
@@ -69,11 +71,10 @@ class User{
         $sql = ("SELECT type FROM users WHERE idUser = $idUser and type = 1");
         $result = $db->dataQuery($sql);
             if(empty($result)){
-                $admin = false;
+                return false;
             }else{
-                $admin = true;
+                return true;
             }
-            return $admin;
         }
         $db->close();
     }
@@ -81,7 +82,7 @@ class User{
     static function checkLogin($username, $password){
         $db = new conexion;
         $db->connect();
-        $result = $db->dataQuery("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
+        $result = $db->dataQuery("SELECT * FROM users WHERE username = '$username' AND password = MD5('$password')");
         if (count($result) > 0){
             Security::createSession($result[0]['idUser']);
             return $result[0];
