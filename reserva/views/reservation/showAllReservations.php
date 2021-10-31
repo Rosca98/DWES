@@ -9,22 +9,20 @@ include_once ("./models/security.php");
 $reserva = Reservation::ReservationList();
 
 if(Security::thereIsSession()){
-    echo "
-    <h1 class='text-center'>Lista de Reservas</h1>
-    <div class='container-sm pt-5'>
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th class='text-center' scope='col'>Recurso</th>
-                <th class='text-center' scope='col'>Usuario</th>
-                <th class='text-center' scope='col'>Dia</th>
-                <th class='text-center' scope='col'>Hora</th>
-                <th class='text-center' scope='col'>Remarks</th>
-                <th class='text-center' scope='col'>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-    ";
+    echo "<h1 class='text-center'>Lista de Reservas</h1>";
+    echo "<div class='container-sm pt-5'>";
+    echo "<table class='table table-striped'>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<th class='text-center' scope='col'>Recurso</th>";
+                echo "<th class='text-center' scope='col'>Usuario</th>";
+                echo "<th class='text-center' scope='col'>Dia</th>";
+                echo "<th class='text-center' scope='col'>Hora</th>";
+                echo "<th class='text-center' scope='col'>Remarks</th>";
+                echo "<th class='text-center' scope='col'>Acciones</th>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
     foreach ($reserva as $result) {
         $id = $result['idReservation'];

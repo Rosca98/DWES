@@ -1,20 +1,18 @@
 <?php
 include_once ("models/timeslots.php");
 
-echo "
-    <h1 class='text-center'>Lista de TimeSlots</h1>
-    <div class='container-sm pt-5'>
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th class='text-center' scope='col'>DayOfWeek</th>
-                <th class='text-center' scope='col'>StartTime</th>
-                <th class='text-center' scope='col'>EndTime</th>
-                <th class='text-center' scope='col'>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-    ";
+echo "<h1 class='text-center'>Lista de TimeSlots</h1>";
+    echo "<div class='container-sm pt-5'>";
+    echo "<table class='table table-striped'>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<th class='text-center' scope='col'>DayOfWeek</th>";
+                echo "<th class='text-center' scope='col'>StartTime</th>";
+                echo "<th class='text-center' scope='col'>EndTime</th>";
+                echo "<th class='text-center' scope='col'>Acciones</th>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
     $timeslot = TimeSlot::TimeSlotsList();
 

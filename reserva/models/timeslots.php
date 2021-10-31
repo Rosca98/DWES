@@ -3,6 +3,9 @@
 
 class TimeSlot{
 
+    /**
+     * Muestra una lista con todos los timeslots
+     */
     static function TimeSlotsList(){
         $db = new conexion;
         $db->connect();
@@ -14,6 +17,9 @@ class TimeSlot{
         $db->close();
     }
 
+    /**
+     * Select segun el id del timeslot para mostrar los datos a modificar
+     */
     static function formModTimeSlot($id_timeslot){
         $db = new conexion;
         $db->connect();
@@ -26,6 +32,9 @@ class TimeSlot{
         }
     }
     
+    /**
+     * Lanza un update con todos los datos para modificar los timeslots
+     */
     static function ModifyTimeSlot($id,$dayofWeek,$startTime,$endTime){
         $db = new conexion;
         $db->connect();
@@ -34,6 +43,9 @@ class TimeSlot{
         $db->close();
     }
 
+    /**
+     * Lanza un insert con los datos del nuevo timeslot que queremos añadir
+     */
     static function addTimeSlot($dayofWeek,$startTime,$endTime){
         $db = new conexion;
         $db->connect();
@@ -42,6 +54,9 @@ class TimeSlot{
         $db->close();
     }
 
+    /**
+     * Elimina el timeslot segun el id
+     */
     static function deleteTimeSlot($id){
         $db = new conexion;
         $db->connect();
@@ -50,6 +65,9 @@ class TimeSlot{
         $db->close();
     }
 
+    /**
+     * Muestra el dia de la semana segun el idtimeslot
+     */
     static function getTimeSlotDay($id){
         $db = new conexion;
         $db->connect();
@@ -60,6 +78,10 @@ class TimeSlot{
             return $name["dayOfWeek"];
         }
     }
+
+    /**
+     * Muestra la hora de inicio segun el idtimeslot
+     */
     static function getStartTime($id){
         $db = new conexion;
         $db->connect();
@@ -70,6 +92,10 @@ class TimeSlot{
             return $name["startTime"];
         }
     }
+
+    /**
+     * Muestra la hora final segun el idtimeslot
+     */
     static function getEndTime($id){
         $db = new conexion;
         $db->connect();
@@ -81,6 +107,9 @@ class TimeSlot{
         }
     }
 
+    /**
+     * Muestra una opcion para un select con el valor del dia, hora de inicio y hora de fin segun el idTimeslot
+     */
     static function showAllTimeSlots(){
         $db = new conexion;
         $db->connect();

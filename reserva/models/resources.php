@@ -2,6 +2,10 @@
     require_once("conexion.php");
 
 class Resource{
+
+    /**
+     * Select all de todos los recursos
+     */
     static function ResourcesList(){
         $db = new conexion;
         $db->connect();
@@ -13,6 +17,9 @@ class Resource{
         $db->close();
     }
 
+    /**
+     * Select segun el id del recurso para mostrar los datos a modificar
+     */
     static function formModResource($id){
         $db = new conexion;
         $db->connect();
@@ -23,6 +30,9 @@ class Resource{
         }
     }
     
+    /**
+     * Lanza un update con todos los datos para modificar el recurso
+     */
     static function ModifyResource($id,$name,$desc,$location,$img_ruta){
         $db = new conexion;
         $db->connect();
@@ -31,6 +41,9 @@ class Resource{
         $db->close();
     }
 
+    /**
+     * Lanza un insert con los datos del nuevo recurso que queremos añadir
+     */
     static function addResource($name,$desc,$location,$img_ruta){
         $db = new conexion;
         $db->connect();
@@ -39,6 +52,9 @@ class Resource{
         $db->close();
     }
 
+    /**
+     * Elimina el recurso segun el id
+     */
     static function deleteResource($id){
         $db = new conexion;
         $db->connect();
@@ -47,6 +63,9 @@ class Resource{
         $db->close();
     }
 
+    /**
+     * Muestra el nombre del recurso segun su id
+     */
     static function getResourceName($id){
         $db = new conexion;
         $db->connect();
@@ -58,6 +77,9 @@ class Resource{
         }
     }
 
+    /**
+     * Muestra el nombre del recurso y se le da al value el id del recurso 
+     */
     static function showAllResources(){
         $db = new conexion;
         $db->connect();

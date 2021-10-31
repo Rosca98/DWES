@@ -2,6 +2,10 @@
     require_once("conexion.php");
 
 class Reservation{
+
+    /**
+     * Select all de todas las reservas
+     */
     static function ReservationList(){
         $db = new conexion;
         $db->connect();
@@ -13,6 +17,9 @@ class Reservation{
         $db->close();
     }
 
+    /**
+     * Lanza un insert con los datos dela nueva reserva que queremos añadir
+     */
     static function addReservation($idResource,$idUser,$idTimeSlot,$remarks){
         $db = new conexion;
         $db->connect();
@@ -22,6 +29,9 @@ class Reservation{
         $db->close();
     }
 
+    /**
+     * Elimina la reserva segun el id
+     */
     static function deleteReservation($id){
         $db = new conexion;
         $db->connect();
@@ -30,6 +40,10 @@ class Reservation{
         $db->close();
     }
 
+    /**
+     * Devuelve true si el recurso y la hora estan disponibles para hacer una reserva
+     * Si el recurso esta reservado esa hora muestra un false
+     */
     static function isAvaliable($idResource, $idTimeSlot){
         $db = new conexion;
         $db->connect();

@@ -14,13 +14,13 @@
         echo "<div class='form-group'>";
         echo "<input type='hidden' name='timeslot_id' id='timeslot_id' value='$id'";
         echo "<label for='timeslot_dayofWeek'>Day of Week:</label>";
-        echo "<select class='form-control' id='timeslot_dayofWeek' name='timeslot_dayofWeek' placeholder='$dayofWeek'>
-                <option>Lunes</option>
-                <option>Martes</option>
-                <option>Miercoles</option>
-                <option>Jueves</option>
-                <option>Viernes</option>
-                </select>";
+        echo "<select class='form-control' id='timeslot_dayofWeek' name='timeslot_dayofWeek' placeholder='$dayofWeek'>";
+                echo "<option>Lunes</option>";
+                echo "<option>Martes</option>";
+                echo "<option>Miercoles</option>";
+                echo "<option>Jueves</option>";
+                echo "<option>Viernes</option>";
+                echo "</select>";
     echo "</div>";
 
         echo "<div class='form-group'>";

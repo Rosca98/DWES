@@ -1,21 +1,19 @@
 <?php
 include_once ("./models/resources.php");
 
-echo "
-    <h1 class='text-center'>Lista de Recursos</h1>
-    <div class='container-sm pt-5'>
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th class='text-center' scope='col'>Recurso</th>
-                <th class='text-center' scope='col'>Descripcion</th>
-                <th class='text-center' scope='col'>Ubicación</th>
-                <th class='text-center' scope='col'>Imagen</th>
-                <th class='text-center' scope='col'>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-    ";
+echo "<h1 class='text-center'>Lista de Recursos</h1>";
+    echo "<div class='container-sm pt-5'>";
+    echo "<table class='table table-striped'>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<th class='text-center' scope='col'>Recurso</th>";
+                echo "<th class='text-center' scope='col'>Descripcion</th>";
+                echo "<th class='text-center' scope='col'>Ubicación</th>";
+                echo "<th class='text-center' scope='col'>Imagen</th>";
+                echo "<th class='text-center' scope='col'>Acciones</th>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
     $resource = Resource::ResourcesList();
 

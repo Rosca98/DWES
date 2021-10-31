@@ -44,7 +44,7 @@ class UserController{
         $realname = $_REQUEST["user_realname"];
 
         $this->user->addUser($username,$password,$realname);
-        header('Location: index.php?controller=userController&action=showUserList');
+        header('Location: index.php?controller=reservationController&action=showReservationList');
     }
 
     /**

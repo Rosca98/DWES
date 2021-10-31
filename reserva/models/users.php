@@ -3,6 +3,9 @@
 
 class User{
 
+    /**
+     * Select all de todos los usuarios
+     */
     static function UserList(){
         $db = new conexion;
         $db->connect();
@@ -14,6 +17,9 @@ class User{
         $db->close();
     }
 
+    /**
+     * Select segun el id del usuario para mostrar los datos a modificar
+     */
     static function formModUser($id_User){
         $db = new conexion;
         $db->connect();
@@ -26,6 +32,9 @@ class User{
         }
     }
     
+    /**
+     * Lanza un update con todos los datos para modificar el usuario
+     */
     static function ModifyUser($id,$username,$password,$realname){
         $db = new conexion;
         $db->connect();
@@ -35,6 +44,9 @@ class User{
         $db->close();
     }
 
+    /**
+     * Lanza un insert con los datos del nuevo usuario que queremos añadir
+     */
     static function addUser($username,$password,$realname){
         $db = new conexion;
         $db->connect();
@@ -44,6 +56,9 @@ class User{
         $db->close();
     }
 
+    /**
+     * Elimina el usuario segun el id
+     */
     static function deleteUser($id){
         $db = new conexion;
         $db->connect();
@@ -52,6 +67,9 @@ class User{
         $db->close();
     }
     
+    /**
+     * Muestra el username del usuario segun su id
+     */
     static function getUserName($id){
         $db = new conexion;
         $db->connect();
@@ -63,6 +81,9 @@ class User{
         }
     }
 
+    /**
+     * Devuelve true si el usuario es Administrador(type 1)
+     */
     static function isAdmin(){
         $db = new conexion;
         $db->connect();
@@ -79,6 +100,9 @@ class User{
         $db->close();
     }
 
+    /**
+     * Comprueba si el usuario y contraseña coinicide con alguna de la base de datos y se crea una sesion con el id
+     */
     static function checkLogin($username, $password){
         $db = new conexion;
         $db->connect();
@@ -92,6 +116,9 @@ class User{
         $db->close();
     }
 
+    /**
+     * Muestra el nombre de usuario y se le da al value el id del usuario 
+     */
     static function showAllUsers(){
         $db = new conexion;
         $db->connect();
