@@ -1,9 +1,4 @@
 <?php
-include_once ("./models/reservation.php");
-include_once ("./models/resources.php");
-include_once ("./models/users.php");
-include_once ("./models/timeslots.php");
-
         if (empty($data)){
             echo "<form action='index.php?controller=reservationController&action=ProcessAddReservation' method='post' enctype='multipart/form-data'>";
         echo "<div class='form-group'>";

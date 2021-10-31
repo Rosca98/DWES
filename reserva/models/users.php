@@ -125,7 +125,7 @@ class User{
         $sql = ("SELECT * FROM users");
         $result = $db->dataQuery($sql);
         foreach ($result as $user) {
-            echo "<option value=".$user['idUser'].">".$user['username']."</option>";
+            echo "<option value='".$user['idUser']."'>".$user['username']."</option>";
         }
         $db->close();
     }

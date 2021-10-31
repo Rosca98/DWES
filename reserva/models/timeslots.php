@@ -116,7 +116,7 @@ class TimeSlot{
         $sql = ("SELECT * FROM timeslots");
         $result = $db->dataQuery($sql);
         foreach ($result as $day) {
-            echo "<option value=".$day['idTimeSlot']."> Dia: ".$day['dayOfWeek']. " De ". $day['startTime'] ." a ". $day['endTime']."</option>";
+            echo "<option value='".$day['idTimeSlot']."'> Dia: ".$day['dayOfWeek']. " De ". $day['startTime'] ." a ". $day['endTime']."</option>";
         }
         $db->close();
     }

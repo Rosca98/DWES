@@ -86,7 +86,7 @@ class Resource{
         $sql = ("SELECT * FROM resources");
         $result = $db->dataQuery($sql);
         foreach ($result as $resource) {
-            echo "<option value=".$resource['idResource'].">".$resource['name']."</option>";
+            echo "<option value='".$resource['idResource']."'>".$resource['name']."</option>";
         }
         $db->close();
     }
