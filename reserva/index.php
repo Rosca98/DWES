@@ -5,10 +5,10 @@ require_once("controllers/timeslotsController.php");
 require_once("controllers/reservationController.php");
 
 // Miramos a ver si hay alguna accion pendiente de realizar
+session_start();
 if (!isset($_REQUEST['action'])) {
 // No la hay. Usamos la accion por defecto (mostrar el formulario de login)
     $action = "showLoginForm";
-    session_start();
 } else {
 // Si la hay. La recuperamos.
     $action = $_REQUEST['action'];

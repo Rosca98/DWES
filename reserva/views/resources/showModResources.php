@@ -30,9 +30,10 @@
 
         echo "<div>";
             echo "<label for='resource_img'>Imagen del recurso:</label>";
-            echo "<img src='$image' class='img-thumbnail'>";
-            echo "<input type='file' name='img_upload' id='img_upload' required>";
-            echo "<input type='text' class='form-control' name='img_link' id='img_link' value='$image'>";
+            echo "<br>";
+            echo "<img src='$image' class='img-thumbnail' heigh='100px' width='100px'>";
+            echo "<input type='file' class='custom-file-input' name='img_upload' value='$image' required>";
+            echo "<input type='text' class='form-control' name='img_link' value='$image'>";
         echo "</div>";
 
         echo "<div>";

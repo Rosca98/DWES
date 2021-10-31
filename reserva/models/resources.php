@@ -13,11 +13,9 @@ class Resource{
         $db->close();
     }
 
-    static function formModResource($id_Resource){
+    static function formModResource($id){
         $db = new conexion;
         $db->connect();
-        $id = $id_Resource;
-
         if ($result = $db->dataQuery("SELECT * FROM resources WHERE idResource = $id")) {
             return $result;
         }else {
@@ -25,10 +23,10 @@ class Resource{
         }
     }
     
-    static function ModifyResource($id,$name,$desc,$location,$img){
+    static function ModifyResource($id,$name,$desc,$location,$img_ruta){
         $db = new conexion;
         $db->connect();
-        $sql = ("UPDATE resources SET name = '$name',description = '$desc',location = '$location', image = '$img' WHERE idResource = $id;");
+        $sql = ("UPDATE resources SET name = '$name',description = '$desc',location = '$location', image = '$img_ruta' WHERE idResource = $id;");
         $db->dataManipulation($sql);
         $db->close();
     }

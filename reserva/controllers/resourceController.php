@@ -42,10 +42,10 @@ class ResourceController{
         $desc = $_REQUEST['resource_desc'];
         $location = $_REQUEST['resource_location'];
 
-        $target_path = 'C:/xampp/htdocs/2daw/pruebaclase/reserva/assets/img/';
+        $target_path = 'F:/xampp/htdocs/2daw/reserva/assets/img/';
         $target_path = $target_path . basename($_FILES['img_upload']['name']);
         if (move_uploaded_file($_FILES['img_upload']['tmp_name'], $target_path)) {
-            $img_ruta = "http://localhost:8081/2daw/pruebaclase/2/images/" . basename($_FILES['img_upload']['name']);
+            $img_ruta = "http://localhost/2daw/reserva/assets/img/" . basename($_FILES['img_upload']['name']);
         } else {
             echo "Error";
         }                
@@ -76,10 +76,10 @@ class ResourceController{
         //¿Hay imagen subida?
         if (isset($_FILES["img_upload"])) {
         //Si la hay se mueve a carpeta y se establece como imagen
-        $target_path = 'C:/xampp/htdocs/2daw/pruebaclase/reserva/assets/img/';
+        $target_path = 'F:/xampp/htdocs/2daw/reserva/assets/img/';
         $target_path = $target_path . basename($_FILES['img_upload']['name']);
         if (move_uploaded_file($_FILES['img_upload']['tmp_name'], $target_path)) {
-            $img_ruta = "http://localhost:8081/2daw/pruebaclase/2/images/" . basename($_FILES['img_upload']['name']);
+            $img_ruta = "http://localhost/2daw/reserva/assets/img/" . basename($_FILES['img_upload']['name']);
         } else {
             echo "Error";
         }
@@ -88,6 +88,6 @@ class ResourceController{
             $img_ruta = $_REQUEST["img_link"];
         }
         $this->resource->ModifyResource($id,$name,$desc,$location,$img_ruta);
-        header('Location: index.php');
+        header('Location: index.php?controller=resourceController&action=showResourcesList');
     }
 }

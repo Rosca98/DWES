@@ -6,46 +6,43 @@
         <ul class='navbar-nav'>
             <li class='nav-item active'>
                 <a class='navbar-brand' href='https://iescelia.org/web/'>
-                    <img src='../assets/img/escudoCelia.png' width='50' height='50' alt=''>
+                    <img src='./assets/img/escudoCelia.png' width='75px' height='75px' alt=''>
                 </a>
             </li>
             <?php
-            if(User::isAdmin()){
-                echo "<li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=userController&action=showUserList'>Usuario</a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=resourceController&action=showResourcesList'>Recursos</a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=timeslotsController&action=showTimeSlotList'>Horario</a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>
-            </li>
-            </ul>
-            </div>
-            </nav>";
-            if(Security::thereIsSession()){
-            echo "<li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>
-            </li>
-            </ul>
-            </div>
-            </nav>";
+            if (User::isAdmin()) {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light' href='index.php?controller=userController&action=showUserList'>Usuario</a>";
+                echo "</li>";
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light' href='index.php?controller=resourceController&action=showResourcesList'>Recursos</a>";
+                echo "</li>";
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light'
+                    href='index.php?controller=timeslotsController&action=showTimeSlotList'>Horario</a>";
+                echo "</li>";
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light'
+                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>";
+                echo "</li>";
+                echo "</ul>";
+                echo "</div>";
+                echo "</nav>";
+            } else if (Security::thereIsSession()) {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light'
+                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>";
+                echo "</li>";
+                echo "</ul>";
+                echo "</div>";
+                echo "</nav>";
+            } else {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link font-weight-bold text-light'
+                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>";
+                echo "</li>";
             }
-
-}else{
-    echo "<li class='nav-item'>
-                <a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>
-            </li>
+            ?>
         </ul>
     </div>
-</nav>";
-}
+</nav>
