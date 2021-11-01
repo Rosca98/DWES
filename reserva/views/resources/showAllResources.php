@@ -53,6 +53,6 @@ echo "</div>";
 
 echo "<br><form method='post' action='index.php?controller=resourceController&action=showAddResource'>";
 echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
-echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
+echo "<button class='btn btn-primary' type='submit'>Añadir nuevo Recurso</button>";
 echo "</div>";
 echo "</form>";

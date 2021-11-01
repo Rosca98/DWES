@@ -7,13 +7,15 @@ if (isset($data['infoMsg'])) {
 }
 
 echo "<form method='post' action='index.php?controller=userController&action=processLoginForm'>";
-echo "<div class='mb-3 mt-3'>";
-echo "<label for='username' class='form-label'>Username:</label>";
+echo "<div class='flex-column d-flex align-items-center'>";
+echo "<div class='mb-3 mt-3 p-2'>";
+echo "<label for='username' class='form-label'>Nombre de Usuario:</label>";
 echo "<input type='username' class='form-control' id='username' placeholder='Introduce el usuario' name='username'>";
 echo "</div>";
-echo "<div class='mb-3'>";
-echo "<label for='password' class='form-label'>Password:</label>";
+echo "<div class='mb-3 p-2'>";
+echo "<label for='password' class='form-label'>Contraseña:</label>";
 echo "<input type='password' class='form-control' id='password' placeholder='Introduce la contraseña' name='password'>";
+echo "</div>";
 echo "</div>";
 echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
 echo "<input type='hidden' name='action' value='processLoginForm'>";

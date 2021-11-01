@@ -48,6 +48,7 @@ if (Security::thereIsSession()) {
         echo "<div class='d-flex'>";
         echo "<form method='post' action='index.php?controller=reservationController&action=eliminarReservation'>";
         echo "<input type='hidden' id='id_reservation' name='id_reservation' value='$id'>";
+        echo "<input type='hidden' id='id_user' name='id_user' value='$idUser'>";
         echo "<input type='submit' class='btn btn-danger' value='Eliminar'>";
         echo "</form>";
         echo "</div>";
@@ -61,7 +62,7 @@ if (Security::thereIsSession()) {
 
     echo "<br><form method='post' action='index.php?controller=reservationController&action=showAddReservation'>";
     echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
-    echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
+    echo "<button class='btn btn-primary' type='submit'>Añadir Reserva</button>";
     echo "</div>";
     echo "</form>";
 } else {

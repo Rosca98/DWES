@@ -1,14 +1,14 @@
 <?php
 include_once("models/timeslots.php");
 
-echo "<h1 class='text-center'>Lista de TimeSlots</h1>";
+echo "<h1 class='text-center'>Lista de Tramos Horarios</h1>";
 echo "<div class='container-sm pt-5'>";
 echo "<table class='table table-striped'>";
 echo "<thead>";
 echo "<tr>";
-echo "<th class='text-center' scope='col'>DayOfWeek</th>";
-echo "<th class='text-center' scope='col'>StartTime</th>";
-echo "<th class='text-center' scope='col'>EndTime</th>";
+echo "<th class='text-center' scope='col'>Dia de la Semana</th>";
+echo "<th class='text-center' scope='col'>Hora Inicio</th>";
+echo "<th class='text-center' scope='col'>Hora Final</th>";
 echo "<th class='text-center' scope='col'>Acciones</th>";
 echo "</tr>";
 echo "</thead>";
@@ -50,6 +50,6 @@ echo "</div>";
 
 echo "<br><form method='post' action='index.php?controller=timeslotsController&action=showAddTimeslot'>";
 echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
-echo "<button class='btn btn-primary' type='submit'>Añadir nuevo</button>";
+echo "<button class='btn btn-primary' type='submit'>Añadir Tramo Horario</button>";
 echo "</div>";
 echo "</form>";

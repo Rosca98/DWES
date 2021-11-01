@@ -122,7 +122,9 @@ class User {
     static function showAllUsers() {
         $db = new conexion;
         $db->connect();
-        $sql = ("SELECT * FROM users");
+        $user = Security::getUserId();
+
+        $sql = ("SELECT * FROM users WHERE idUser = $user");
         $result = $db->dataQuery($sql);
         foreach ($result as $user) {
             echo "<option value='" . $user['idUser'] . "'>" . $user['username'] . "</option>";
