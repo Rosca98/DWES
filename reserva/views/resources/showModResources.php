@@ -34,7 +34,7 @@ foreach ($resource as $result) {
     echo "<label for='resource_img'>Imagen del recurso:</label>";
     echo "<br>";
     echo "<img src='$image' class='img-thumbnail' heigh='100px' width='100px'>";
-    echo "<input type='file' class='custom-file-input' name='img_upload' value='$image' required>";
+    echo "<input type='file' class='custom-file-input' name='img_upload' value='$image'>";
     echo "<input type='text' class='form-control' name='img_link' value='$image'>";
     echo "</div>";
 
