@@ -104,4 +104,12 @@ class UserController {
             }
         }
     }
+
+    /**
+     * Cerrar sesion
+     */
+    public function processSignOff() {
+        Security::closeSession();
+        $this->view->show("users/showLoginForm");
+    }
 }

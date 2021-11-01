@@ -65,6 +65,11 @@ if (Security::thereIsSession()) {
     echo "<button class='btn btn-primary' type='submit'>Añadir Reserva</button>";
     echo "</div>";
     echo "</form>";
+    echo "<br><form method='post' action='index.php?controller=userController&action=processSignOff'>";
+    echo "<div class='d-grid gap-2 d-md-flex justify-content-md-center'>";
+    echo "<button class='btn btn-primary' type='submit'>Cerrar Sesion</button>";
+    echo "</div>";
+    echo "</form>";
 } else {
     echo "
     <h1 class='text-center'>Lista de Reservas</h1>
