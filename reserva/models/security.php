@@ -1,5 +1,5 @@
 <?php
-    require_once("conexion.php");
+require_once("conexion.php");
 
 class Security {
 
@@ -10,7 +10,7 @@ class Security {
     public static function createSession($idUser) {
         $_SESSION['idUser'] = $idUser;
     }
-    
+
     /**
      * Devuelve el id del usuario logueado
      */
@@ -46,5 +46,4 @@ class Security {
         // (Está sin implementar)
         return $str;
     }
-
 }

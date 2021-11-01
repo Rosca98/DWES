@@ -1,16 +1,16 @@
-<?php 
-    require_once("view.php");
-    require_once("models/reservation.php");
-    require_once("models/resources.php");
-    require_once("models/timeslots.php");
+<?php
+require_once("view.php");
+require_once("models/reservation.php");
+require_once("models/resources.php");
+require_once("models/timeslots.php");
 
 
-class ReservationController{
-    
+class ReservationController {
+
     /**
      * Constructor de la clase
      */
-    public function __construct(){
+    public function __construct() {
         $this->view = new View();
         $this->reservation = new Reservation();
     }
@@ -18,33 +18,32 @@ class ReservationController{
     /**
      * Muestra lista de Reservas
      */
-    public function showReservationList(){
+    public function showReservationList() {
         $this->view->show("reservation/showAllReservations");
     }
 
     /**
      * Muestra el formulario para añadir reservas
      */
-    public function showAddReservation(){
+    public function showAddReservation() {
         $this->view->show("reservation/showAddReservations");
-        
     }
 
     /**
      * Procesamos la informacion para añadir la nueva reserva
      */
-    public function processAddReservation(){
+    public function processAddReservation() {
         $user = $_REQUEST["user_id"];
         $resource = $_REQUEST["resource_id"];
         $timeslot = $_REQUEST["timeslot_id"];
         $remarks = $_REQUEST["remarks"];
 
         $avaliable = Reservation::isAvaliable($resource, $timeslot);
-        
-        if($avaliable){
-            $this->reservation->addReservation($resource,$user,$timeslot,$remarks);
+
+        if ($avaliable) {
+            $this->reservation->addReservation($resource, $user, $timeslot, $remarks);
             header('Location: index.php?controller=reservationController&action=showReservationList');
-        }else{
+        } else {
             $data['errorMsg'] = "Ya existe una reserva para ese recurso en esa hora, por favor, prueba otra";
             $this->view->show("reservation/showAddReservations", $data);
         }
@@ -53,11 +52,10 @@ class ReservationController{
     /**
      * Eliminar la reserva
      */
-    public function eliminarReservation(){
+    public function eliminarReservation() {
         $id = $_REQUEST['id_reservation'];
         $this->reservation->deleteReservation($id);
         //Volver a la lista de Usuarios
         header('Location: index.php?controller=reservationController&action=showReservationList');
     }
-  
 }

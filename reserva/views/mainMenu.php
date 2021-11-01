@@ -19,11 +19,11 @@
                 echo "</li>";
                 echo "<li class='nav-item'>";
                 echo "<a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=timeslotsController&action=showTimeSlotList'>Horario</a>";
+                        href='index.php?controller=timeslotsController&action=showTimeSlotList'>Horario</a>";
                 echo "</li>";
                 echo "<li class='nav-item'>";
                 echo "<a class='nav-link font-weight-bold text-light'
-                    href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>";
+                        href='index.php?controller=reservationController&action=showReservationList'>Reservas</a>";
                 echo "</li>";
                 echo "</ul>";
                 echo "</div>";

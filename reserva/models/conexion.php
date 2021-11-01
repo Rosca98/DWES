@@ -1,5 +1,5 @@
 <?php
-class conexion{
+class conexion {
     private $server;
     private $user;
     private $pass;
@@ -8,7 +8,7 @@ class conexion{
     /**
      * Constructor
      */
-    function __construct(){
+    function __construct() {
         $this->server = "localhost";
         $this->user = "root";
         $this->pass = "";
@@ -18,7 +18,7 @@ class conexion{
     /**
      * Conecta a la base de datos con los datos ya dados en el constructor
      */
-    function connect(){
+    function connect() {
         $this->connection = mysqli_connect(
             $this->server,
             $this->user,
@@ -37,10 +37,10 @@ class conexion{
      * @param $sql El código de la consulta que se quiere lanzar
      * @return array Un array bidimensional con los resultados de la consulta (o null si la consulta no devolvió nada)
      */
-    function dataQuery($sql){
+    function dataQuery($sql) {
         $data = array();
-        $resultado = mysqli_query($this -> connection, $sql);
-        $error = mysqli_error($this -> connection);
+        $resultado = mysqli_query($this->connection, $sql);
+        $error = mysqli_error($this->connection);
 
         if (empty($error)) {
             if (mysqli_num_rows($resultado) > 0) {
@@ -59,10 +59,10 @@ class conexion{
      * ¡Ojo! Este método solo funcionará con sentencias INSERT, UPDATE, DELETE y similares.
      * @param $sql El código de la consulta que se quiere lanzar
      */
-    function dataManipulation($sql){
-        $conectado = mysqli_query($this -> connection, $sql);
+    function dataManipulation($sql) {
+        $conectado = mysqli_query($this->connection, $sql);
 
-        $error = mysqli_error($this -> connection);
+        $error = mysqli_error($this->connection);
 
         if (empty($error)) {
             return $conectado;
@@ -73,9 +73,7 @@ class conexion{
     /**
      * Cierra la conexion con la base de datos
      */
-    function close(){
-        mysqli_close($this -> connection);
+    function close() {
+        mysqli_close($this->connection);
     }
-
 }
-?>
