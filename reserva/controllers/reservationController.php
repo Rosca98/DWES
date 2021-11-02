@@ -36,12 +36,13 @@ class ReservationController {
         $user = $_REQUEST["user_id"];
         $resource = $_REQUEST["resource_id"];
         $timeslot = $_REQUEST["timeslot_id"];
+        $date = $_REQUEST["date"];
         $remarks = $_REQUEST["remarks"];
 
-        $avaliable = Reservation::isAvaliable($resource, $timeslot);
+        $avaliable = Reservation::isAvaliable($resource, $timeslot, $date);
 
         if ($avaliable) {
-            $this->reservation->addReservation($resource, $user, $timeslot, $remarks);
+            $this->reservation->addReservation($resource, $user, $timeslot, $date, $remarks);
             header('Location: index.php?controller=reservationController&action=showReservationList');
         } else {
             $data['errorMsg'] = "Ya existe una reserva para ese recurso en esa hora, por favor, prueba otra";

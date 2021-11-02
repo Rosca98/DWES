@@ -20,10 +20,9 @@ class Reservation {
     /**
      * Lanza un insert con los datos dela nueva reserva que queremos añadir
      */
-    static function addReservation($idResource, $idUser, $idTimeSlot, $remarks) {
+    static function addReservation($idResource, $idUser, $idTimeSlot, $date, $remarks) {
         $db = new conexion;
         $db->connect();
-        $date = date("Y-m-d H:i:s");
         $sql = ("INSERT INTO reservations VALUES(NULL, '$idResource', '$idUser', '$idTimeSlot', '$date', '$remarks')");
         $db->dataManipulation($sql);
         $db->close();
@@ -44,10 +43,10 @@ class Reservation {
      * Devuelve true si el recurso y la hora estan disponibles para hacer una reserva
      * Si el recurso esta reservado esa hora muestra un false
      */
-    static function isAvaliable($idResource, $idTimeSlot) {
+    static function isAvaliable($idResource, $idTimeSlot, $date) {
         $db = new conexion;
         $db->connect();
-        $result = $db->dataQuery("SELECT * FROM Reservations WHERE idResource = $idResource AND idTimeSlot = $idTimeSlot;");
+        $result = $db->dataQuery("SELECT * FROM reservations WHERE idResource = $idResource AND idTimeSlot = $idTimeSlot AND date = '$date';");
 
         if (empty($result)) {
             $avaliable = true;

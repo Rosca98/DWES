@@ -18,6 +18,7 @@ if (Security::thereIsSession()) {
     echo "<th class='text-center' scope='col'>Usuario</th>";
     echo "<th class='text-center' scope='col'>Dia</th>";
     echo "<th class='text-center' scope='col'>Hora</th>";
+    echo "<th class='text-center' scope='col'>Fecha</th>";
     echo "<th class='text-center' scope='col'>Remarks</th>";
     echo "<th class='text-center' scope='col'>Acciones</th>";
     echo "</tr>";
@@ -42,6 +43,7 @@ if (Security::thereIsSession()) {
         echo "<td class='text-center'>$userName</td>";
         echo "<td class='text-center'>$day</td>";
         echo "<td class='text-center'>De $startTime a $endTime</td>";
+        echo "<td class='text-center'>$date</td>";
         echo "<td class='text-center'>$remarks</td>";
         echo "<td>";
         echo "<div class='d-flex flex-row justify-content-around'>";
@@ -71,21 +73,20 @@ if (Security::thereIsSession()) {
     echo "</div>";
     echo "</form>";
 } else {
-    echo "
-    <h1 class='text-center'>Lista de Reservas</h1>
-    <div class='container-sm pt-5'>
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th class='text-center' scope='col'>Recurso</th>
-                <th class='text-center' scope='col'>Usuario</th>
-                <th class='text-center' scope='col'>Dia</th>
-                <th class='text-center' scope='col'>Hora</th>
-                <th class='text-center' scope='col'>Remarks</th>
-            </tr>
-        </thead>
-        <tbody>
-    ";
+    echo "<h1 class='text-center'>Lista de Reservas</h1>";
+    echo "<div class='container-sm pt-5'>";
+    echo "<table class='table table-striped'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th class='text-center' scope='col'>Recurso</th>";
+    echo "<th class='text-center' scope='col'>Usuario</th>";
+    echo "<th class='text-center' scope='col'>Dia</th>";
+    echo "<th class='text-center' scope='col'>Hora</th>";
+    echo "<th class='text-center' scope='col'>Fecha</th>";
+    echo "<th class='text-center' scope='col'>Remarks</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($reserva as $result) {
         $id = $result['idReservation'];
         $idResource = $result['idResource'];
@@ -104,6 +105,7 @@ if (Security::thereIsSession()) {
         echo "<td class='text-center'>$userName</td>";
         echo "<td class='text-center'>$day</td>";
         echo "<td class='text-center'>De $startTime a $endTime</td>";
+        echo "<td class='text-center'>$date</td>";
         echo "<td class='text-center'>$remarks</td>";
         echo "</tr>";
     }

@@ -16,6 +16,11 @@ if (empty($data)) {
     Resource::showAllResources();
     echo "</select>";
     echo "</div>";
+    echo "</div>";
+    echo "<div class='form-group p-2'>";
+    echo "<label for='user_name'>Fecha:</label>";
+    echo "<input type='date' format='yyyy-mm-dd' class='form-control' id='date' name='date'>";
+    echo "</div>";
     echo "<div class='form-group p-2'>";
     echo "<label for='resource_name'>Tramo Horario:</label>";
     echo "<select class='form-control' id='timeslot_id' name='timeslot_id' placeholder='dayofWeek'>";
@@ -49,6 +54,10 @@ if (empty($data)) {
     echo "<option disabled selected>Elige el recurso</option>";
     Resource::showAllResources();
     echo "</select>";
+    echo "</div>";
+    echo "<div class='form-group p-2'>";
+    echo "<label for='user_name'>Fecha:</label>";
+    echo "<input type='date' format='yyyy-mm-dd' class='form-control' id='date' name='date'>";
     echo "</div>";
     echo "<div class='form-group p-2'>";
     echo "<label for='resource_name'>Tramo Horario:</label>";
